@@ -126,6 +126,12 @@ Detalles, duración de la muestra y límites de esa observación en `visual-poli
 
 El carrusel utiliza un estado inicial explícito de escala/desplazamiento y `tabIndex` determinista en sus controles para evitar diferencias entre SSR y el navegador al resolver `prefers-reduced-motion`. El título de inicio es «Taberna Don Juan» en los seis idiomas. Lint y build correctos; 47 E2E afectadas correctas y una omisión prevista, incluidas cuatro comprobaciones de hidratación con preferencias de movimiento normal/reducido y detección de errores de consola.
 
+### Preview pública en Vercel
+
+Publicada en `https://taberna-don-juan-prueba.vercel.app`, en la cuenta autorizada del usuario. Build remoto completado, HTTP 200 sin sesión de Vercel, inicio con título correcto, catálogo de 92 platos/134 bebidas, búsqueda, favicon, selector francés y menú/nav móvil comprobados con Chromium en contextos sin autenticar. No se observaron errores de hidratación en esta comprobación remota. El entorno es Preview y mantiene `noindex`; Supabase/Redis/Resend remotos siguen sin configurar.
+
+GitHub Actions completó correctamente la CI del commit inicial `01471a1`. La auditoría npm consultada al desplegar detecta dos avisos altos en la cadena transitiva `next-intl → @parcel/watcher → picomatch` (GHSA-fc5q-39xc-vjpf); los resultados anteriores de auditoría son históricos, no una consulta actual de vulnerabilidades.
+
 - **Supabase remoto no configurado:** no se han aplicado migraciones ni comprobado cuentas/Storage contra un proyecto remoto. PostgreSQL/RLS se verifica en PGlite y el flujo SDK/Next en un proveedor HTTPS de prueba explícito; no certifica la configuración externa.
 - **Resend remoto no configurado:** pruebas del adaptador con el SDK simulado; no se han enviado correos ni verificado un dominio.
 - **Accesibilidad:** axe y teclado son una base automatizada, no una auditoría manual completa con tecnologías de asistencia.

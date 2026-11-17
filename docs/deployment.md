@@ -2,7 +2,18 @@
 
 ## Estado de esta entrega
 
-Código y configuración preparados; **no hay despliegue, cambio de DNS, proyecto Supabase remoto ni dominio Resend verificado desde esta sesión**. Las reservas y sus correos siguen aplazados.
+Prueba pública desplegada y verificada el **17/11/2026**:
+
+- Web para compartir: **https://taberna-don-juan-prueba.vercel.app**.
+- Repositorio: **https://github.com/raaulstan/taberna-don-juan**.
+- Proyecto Vercel: `rauls-projects-953cfa67/taberna-don-juan`.
+- Entorno: **Preview**, catálogo local, sin requerir login de Vercel para abrir el enlace.
+- Despliegue: `dpl_FhkVHLUx4gYVkc1vWdZZ4Y16nGTk`, origen `https://taberna-don-juan-59avvyrci-rauls-projects-953cfa67.vercel.app`.
+- Build remoto Next.js/TypeScript correcto. Verificados HTTP 200, título «Taberna Don Juan», 92 platos, 134 bebidas, filtros, favicon, cambio de idioma, navbar y menú móvil; cero errores de hidratación observados.
+
+El enlace corto es un alias de esta preview. Para moverlo a una nueva prueba se usa `vercel alias set NUEVA_URL taberna-don-juan-prueba.vercel.app --scope rauls-projects-953cfa67`.
+
+No se han modificado DNS propios ni configurado Supabase/Redis/Resend remotos. Las reservas y sus correos siguen aplazados. La validación de producción permanece activa: el primer intento, dirigido automáticamente a Production por Vercel, se detuvo por variables ausentes; la prueba se publicó explícitamente en Preview.
 
 ## Instalación local
 

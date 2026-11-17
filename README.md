@@ -6,6 +6,10 @@ Diseñada con una estética editorial cálida, navegación accesible y una arqui
 
 **Repositorio:** [raaulstan/taberna-don-juan](https://github.com/raaulstan/taberna-don-juan).
 
+**Prueba pública:** [taberna-don-juan-prueba.vercel.app](https://taberna-don-juan-prueba.vercel.app).
+
+La prueba está desplegada en Vercel como **Preview**, con el catálogo local y acceso público sin iniciar sesión. Puede abrirse desde ordenador, móvil y tablet.
+
 ## Índice
 
 - [Funcionalidades](#funcionalidades)
@@ -304,6 +308,29 @@ La configuración está en `vercel.json`:
 - Node.js: 24.
 
 ### Prueba pública / Preview
+
+Despliegue verificado el **17/11/2026**:
+
+- URL para compartir: <https://taberna-don-juan-prueba.vercel.app>.
+- Proyecto: `taberna-don-juan`, en el espacio `rauls-projects-953cfa67`.
+- Build remoto Next.js/TypeScript correcto, con `PUBLIC_DATA_SOURCE=local`.
+- Acceso comprobado sin cookies ni sesión de Vercel: inicio, cartas, selector de idiomas, navbar/menú móvil y favicon.
+- No requiere conexión a la red local ni mantener encendido el servidor de desarrollo.
+
+Para crear nuevas previews del proyecto existente:
+
+```bash
+npx vercel login
+npx vercel deploy --yes --project taberna-don-juan --environment preview --build-env PUBLIC_DATA_SOURCE=local --env PUBLIC_DATA_SOURCE=local
+```
+
+Para que el enlace corto apunte a una preview nueva, sustituye `URL_DEL_DESPLIEGUE` por la URL devuelta por Vercel:
+
+```bash
+npx vercel alias set URL_DEL_DESPLIEGUE taberna-don-juan-prueba.vercel.app --scope rauls-projects-953cfa67
+```
+
+#### Configuración inicial en otra cuenta
 
 1. Importa `raaulstan/taberna-don-juan` en Vercel o enlaza el directorio con Vercel CLI.
 2. Usa el entorno **Preview** y `PUBLIC_DATA_SOURCE=local` para revisar la web sin integrar servicios privados.
