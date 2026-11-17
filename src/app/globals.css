@@ -1,0 +1,244 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  color-scheme: light;
+  --walnut: #3b2115;
+  --oak: #65402a;
+  --parchment: #f4e4c8;
+  --honey: #d5a65e;
+  --olive: #263b29;
+  --background: #f4e4c8;
+  --foreground: #3b2115;
+  --card: #fbf5e9;
+  --card-foreground: #3b2115;
+  --popover: #fbf5e9;
+  --popover-foreground: #3b2115;
+  --primary: #3b2115;
+  --primary-foreground: #f4e4c8;
+  --secondary: #e8d4b3;
+  --secondary-foreground: #3b2115;
+  --muted: #ebd9bb;
+  --muted-foreground: #65402a;
+  --accent: #d5a65e;
+  --accent-foreground: #3b2115;
+  --destructive: #962e23;
+  --destructive-foreground: #fff9f0;
+  --border: #bba483;
+  --input: #8c7458;
+  --ring: #263b29;
+  --radius: 0.5rem;
+  --motion-fast: 160ms;
+  --motion-standard: 260ms;
+  --motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@theme inline {
+  --color-walnut: var(--walnut);
+  --color-oak: var(--oak);
+  --color-parchment: var(--parchment);
+  --color-honey: var(--honey);
+  --color-olive: var(--olive);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --font-sans: var(--font-interface, Arial, Helvetica, sans-serif);
+  --font-serif: var(--font-editorial, Georgia, "Times New Roman", serif);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background font-sans text-foreground antialiased;
+    margin: 0;
+    min-height: 100dvh;
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--ring);
+    outline-offset: 4px;
+  }
+
+  section[id],
+  main[id] {
+    scroll-margin-top: 7rem;
+  }
+
+  ::selection {
+    background: var(--honey);
+    color: var(--walnut);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  .site-container {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8 lg:px-12;
+  }
+
+  .section-space {
+    @apply py-18 sm:py-24 lg:py-28;
+  }
+
+  .section-heading {
+    @apply font-serif text-4xl leading-[1.15] tracking-tight text-balance sm:text-5xl;
+  }
+
+  .eyebrow {
+    @apply text-xs leading-relaxed font-semibold tracking-[0.18em] uppercase;
+  }
+
+  .paper-surface {
+    background-color: var(--parchment);
+    background-image: radial-gradient(ellipse at top left, #fff9ec80, transparent 65%);
+  }
+
+  .wood-surface {
+    background-image: repeating-linear-gradient(93deg, transparent 0 9px, #00000008 10px 11px, transparent 12px 25px);
+  }
+
+  .hero-shade {
+    background: linear-gradient(90deg, #211109f2 0%, #2b180ee6 35%, #2b180e80 70%, #2b180e40), linear-gradient(0deg, #211109c0, transparent 65%);
+  }
+
+  .public-header :focus-visible,
+  .admin-sidebar :focus-visible,
+  .public-footer :focus-visible,
+  .home-hero :focus-visible,
+  .menu-hero :focus-visible,
+  .category-card:focus-visible,
+  #bebidas :focus-visible {
+    outline-color: var(--honey);
+  }
+
+  .specialties-track {
+    scrollbar-color: var(--oak) var(--secondary);
+    scrollbar-width: thin;
+  }
+
+  .interactive-control {
+    touch-action: manipulation;
+    transition-property: background-color, color, border-color, box-shadow, transform;
+    transition-duration: var(--motion-fast);
+    transition-timing-function: var(--motion-ease);
+  }
+
+  .interactive-card {
+    transition: border-color var(--motion-standard) var(--motion-ease), box-shadow var(--motion-standard) var(--motion-ease);
+  }
+
+  .interactive-card:focus-within {
+    border-color: var(--oak);
+  }
+
+  .interactive-photo {
+    transition: transform 500ms var(--motion-ease);
+  }
+
+  .dialog-overlay[data-state="open"] {
+    animation: dialog-backdrop-in var(--motion-standard) ease-out;
+  }
+
+  .dialog-overlay[data-state="closed"] {
+    animation: dialog-backdrop-out var(--motion-fast) ease-in;
+  }
+
+  .dialog-content[data-state="open"] {
+    animation: dialog-content-in var(--motion-standard) var(--motion-ease);
+  }
+
+  .dialog-content[data-state="closed"] {
+    animation: dialog-content-out var(--motion-fast) ease-in;
+    pointer-events: none;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .interactive-card:hover {
+    border-color: var(--oak);
+    box-shadow: 0 8px 22px #3b211518;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .interactive-control:not(:disabled):not([aria-disabled="true"]):active {
+    transform: translateY(1px) scale(0.99);
+  }
+
+  .interactive-card:focus-within .interactive-photo {
+    transform: scale(1.025);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .interactive-control:not(:disabled):not([aria-disabled="true"]):hover {
+    transform: translateY(-1px);
+  }
+
+  .interactive-control:not(:disabled):not([aria-disabled="true"]):active {
+    transform: translateY(1px) scale(0.99);
+  }
+
+  .interactive-card:hover .interactive-photo {
+    transform: scale(1.035);
+  }
+}
+
+@keyframes dialog-backdrop-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes dialog-backdrop-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes dialog-content-in {
+  from { transform: translateY(10px) scale(0.985); }
+  to { transform: translateY(0) scale(1); }
+}
+
+@keyframes dialog-content-out {
+  from { transform: translateY(0) scale(1); opacity: 1; }
+  to { transform: translateY(6px) scale(0.99); opacity: 0; }
+}

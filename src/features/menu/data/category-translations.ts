@@ -1,0 +1,25 @@
+// Etiquetas editoriales. Los nombres y descripciones de los productos conservan
+// el original cuando no existe una traducción revisada del registro.
+export const categoryTranslations: Record<string, { fr: string; ro: string; it: string; de: string }> = {
+  tapas: { fr: "Tapas et entrées", ro: "Tapas și aperitive", it: "Tapas e antipasti", de: "Tapas und Vorspeisen" },
+  rice: { fr: "Riz", ro: "Preparate cu orez", it: "Piatti di riso", de: "Reisgerichte" },
+  seafood: { fr: "Poissons et fruits de mer", ro: "Pește și fructe de mare", it: "Pesce e frutti di mare", de: "Fisch und Meeresfrüchte" },
+  meat: { fr: "Viandes", ro: "Preparate din carne", it: "Carne", de: "Fleischgerichte" },
+  desserts: { fr: "Desserts", ro: "Deserturi", it: "Dolci", de: "Desserts" },
+  "tapas-small": { fr: "Tapas", ro: "Tapas", it: "Tapas", de: "Tapas" },
+  sharing: { fr: "Carte · À partager", ro: "Meniu · De împărțit", it: "Menù · Da condividere", de: "Karte · Zum Teilen" },
+  garden: { fr: "Carte · Du potager", ro: "Meniu · Din grădină", it: "Menù · Dall’orto", de: "Karte · Aus dem Garten" },
+  stews: { fr: "Carte · Plats mijotés", ro: "Meniu · Tocănițe", it: "Menù · Piatti in umido", de: "Karte · Schmorgerichte" },
+  "rice-menu": { fr: "Riz", ro: "Preparate cu orez", it: "Piatti di riso", de: "Reisgerichte" },
+  "sea-menu": { fr: "De la mer", ro: "Din mare", it: "Dal mare", de: "Aus dem Meer" },
+  "fish-menu": { fr: "Carte · Poissons", ro: "Meniu · Pește", it: "Menù · Pesce", de: "Karte · Fisch" },
+  "meat-menu": { fr: "Carte · Viandes", ro: "Meniu · Carne", it: "Menù · Carne", de: "Karte · Fleisch" },
+  "desserts-menu": { fr: "Desserts", ro: "Deserturi", it: "Dolci", de: "Desserts" },
+  extras: { fr: "Carte · Accompagnements", ro: "Meniu · Garnituri", it: "Menù · Contorni", de: "Karte · Beilagen" },
+  "drinks-beer": { fr: "Bières et autres boissons", ro: "Bere și alte băuturi", it: "Birre e altre bevande", de: "Bier und weitere Getränke" },
+  "drinks-soft": { fr: "Boissons sans alcool", ro: "Băuturi răcoritoare", it: "Bibite", de: "Erfrischungsgetränke" },
+  "drinks-coffee-tea": { fr: "Café et thé", ro: "Cafea și ceai", it: "Caffè e tè", de: "Kaffee und Tee" },
+  "drinks-gin": { fr: "Gins", ro: "Gin", it: "Gin", de: "Gin" },
+  "drinks-whisky": { fr: "Whisky", ro: "Whisky", it: "Whisky", de: "Whisky" },
+  "drinks-liqueurs": { fr: "Liqueurs", ro: "Lichioruri", it: "Liquori", de: "Liköre" },
+};

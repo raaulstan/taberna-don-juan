@@ -1,0 +1,66 @@
+{
+  "Metadata": {
+    "title": "Taberna Don Juan",
+    "description": "Découvrez Taberna Don Juan au cœur de Málaga : cuisine méditerranéenne, tapas, riz et saveurs traditionnelles. Consultez notre carte et retrouvez-nous."
+  },
+  "Navigation": {
+    "label": "Navigation principale", "home": "Accueil", "menu": "La carte", "drinks": "Boissons", "story": "Notre histoire", "contact": "Contact",
+    "languages": "Choisir la langue", "skip": "Aller au contenu", "staff": "Accès équipe", "openMenu": "Ouvrir le menu", "closeMenu": "Fermer le menu", "call": "Appelez-nous"
+  },
+  "Home": {
+    "eyebrow": "Au cœur de Málaga", "title": "Taberna Don Juan", "heroLine": "Des saveurs familières. Des instants à savourer.",
+    "heroSideTitle": "L’art de prendre son temps", "heroSideNote": "Tradition méditerranéenne", "imageSpace": "Emplacement photo",
+    "description": "Cuisine méditerranéenne, tradition et plaisir du partage au cœur de Málaga.",
+    "explore": "Découvrir notre carte", "meetUs": "Notre histoire", "quickContact": "Contact rapide du restaurant", "callNow": "Parlons-en", "findUs": "Dans le centre de Málaga",
+    "heroAtmosphere": "Image d’ambiance temporaire", "fullMenu": "Voir toute la carte", "storyAtmosphere": "Image d’ambiance temporaire ; ce n’est pas une photographie vérifiée du restaurant.",
+    "mediaTitle": "À propos de nos images",
+    "mediaNote": "Les images de couverture et de catégories proviennent des ressources d’ambiance du site d’origine ; elles ne représentent pas nécessairement le restaurant ou un plat précis. Les plats sans photographie propre utilisent une illustration neutre. Des photographies authentiques du restaurant et de sa cuisine restent à fournir.",
+    "heroImage": "Image d’ambiance du site d’origine. Une photographie réelle du restaurant reste à fournir.",
+    "location": "Málaga · Centre historique", "scroll": "Découvrir Don Juan",
+    "specialtiesEyebrow": "Un aperçu de notre cuisine", "specialtiesTitle": "Des saveurs qui invitent à rester", "specialtiesDescription": "Une sélection de notre carte. Des saveurs méditerranéennes à déguster à votre rythme.",
+    "carousel": "Sélection de plats", "slide": "diapositive", "previous": "Plat précédent", "next": "Plat suivant", "dishImage": "Image illustrative de la catégorie, pas une photographie du plat.",
+    "viewSource": "Voir sur notre carte", "price": "Prix publié", "pricesNote": "Prix du site d’origine, consultés le 17 novembre 2026. Confirmez la carte actuelle auprès du restaurant.",
+    "managedPrices": "Carte publiée par l’équipe du restaurant. Renseignez-vous sur les informations en attente.", "managedImage": "Photographie publiée par l’équipe du restaurant.", "noSpecialties": "Aucune spécialité n’est publiée pour le moment. Consultez la carte ou contactez notre équipe.",
+    "croquettesName": "Croquettes de puchero", "croquettesDescription": "Croquettes maison aux saveurs du puchero traditionnel. Prix de la section tapas.",
+    "riceName": "Riz señoret", "riceDescription": "Avec seiche, langoustines, moules et crevettes, à déguster sans se salir les doigts.",
+    "octopusName": "Poulpe grillé", "octopusDescription": "Poulpe grillé aux notes fumées, proposé dans notre sélection De la Mar.",
+    "menuEyebrow": "À votre goût, à notre façon", "menuTitle": "La carte", "menuDescription": "De la première bouchée à la dernière gourmandise. Trouvez votre coup de cœur dans notre cuisine.",
+    "categoriesNote": "Explorez les catégories de notre carte. Les images sont illustratives et ne garantissent pas la présentation des plats.",
+    "tapas": "Tapas et entrées", "rice": "Riz", "seafood": "Poissons et fruits de mer", "meat": "Viandes", "desserts": "Desserts", "drinks": "Boissons",
+    "viewCategory": "Explorer la catégorie", "viewDrinks": "Explorer les boissons", "illustrative": "Image d’ambiance", "photoPending": "Photographie à venir",
+    "drinksEyebrow": "L’accompagnement", "drinksTitle": "À chaque plat son moment", "drinksDescription": "Bières, boissons sans alcool, cafés et thés, gins, whisky et liqueurs. Retrouvez votre boisson et son prix sur la carte.", "drinksContact": "Nous appeler",
+    "storyEyebrow": "Notre histoire", "storyTitle": "La Méditerranée dans notre art du partage", "storyLead": "Au cœur de Málaga, une cuisine qui revisite les saveurs familières avec une touche actuelle.",
+    "storyDescription": "Notre approche associe tradition méditerranéenne et créativité. La bonne cuisine, le soin des détails et les moments partagés en bonne compagnie nous inspirent.",
+    "storyQuote": "Bonne cuisine. Bonne compagnie. Beaux moments.", "storyImage": "Image d’ambiance du site d’origine ; ce n’est pas une photographie vérifiée du restaurant.",
+    "contactEyebrow": "Retrouvez-nous à Málaga", "contactTitle": "Rendez-vous chez Don Juan", "contactDescription": "Dans le centre historique, la ville à deux pas et la table comme lieu de rencontre.",
+    "addressLabel": "Où nous trouver", "map": "Itinéraire", "directions": "Obtenir l’itinéraire", "closures": "Fermetures exceptionnelles publiées", "managedContact": "Informations publiées par l’équipe du restaurant.",
+    "hoursLabel": "Horaires", "hoursDays": "Du lundi au dimanche", "hoursTime": "12:00–00:00", "hoursNote": "Horaires du site d’origine. Appelez-nous pour les jours fériés et changements éventuels.",
+    "phoneLabel": "Parlons-en", "mobileLabel": "Portable", "landlineLabel": "Fixe", "contactSource": "Informations consultées sur le site d’origine le 17 novembre 2026."
+  },
+  "Menu": {
+    "foodTitle": "La carte", "foodDescription": "Tapas, riz et cuisine méditerranéenne à Taberna Don Juan, Málaga. Découvrez les plats, les prix et les informations de la carte.",
+    "drinksTitle": "Boissons", "drinksDescription": "Découvrez les boissons de Taberna Don Juan à Málaga : bières, boissons sans alcool, café et thé, gins, whisky et liqueurs avec leurs prix.",
+    "drinksEyebrow": "Pour accompagner et savourer", "drinksIntro": "De la première bière au café après le repas. Explorez notre sélection et trouvez votre boisson.", "drinksCatalogTitle": "Trouvez votre boisson",
+    "drinksSourceNote": "Noms et prix transcrits des six images de la carte fournies le 17 novembre 2026. Les formats et options regroupées sont conservés, sans supposer de volumes ni de suppléments.",
+    "drinksMissingNote": "Les images n’indiquent pas les descriptions, ingrédients, allergènes ou disponibilités en temps réel. Notre équipe peut vous renseigner.",
+    "eyebrow": "La cuisine de Don Juan", "intro": "Tapas, riz et saveurs méditerranéennes. Notre carte, à votre rythme.", "foodLink": "Explorer la cuisine", "drinksLink": "Voir les boissons",
+    "specialties": "Une sélection pour commencer", "specialtiesIntro": "Faites défiler et découvrez les détails de chaque spécialité.", "catalogTitle": "Trouvez votre prochain coup de cœur",
+    "drinksMissing": "Aucune boisson n’est publiée dans ce catalogue. Renseignez-vous auprès de notre équipe.", "call": "Nous appeler",
+    "demoTitle": "Démonstration de l’interface des boissons", "demoNote": "Contenu de démonstration séparé de la carte réelle. Ces exemples ne sont pas proposés à la vente et ne comportent aucun prix ni ingrédient inventé. Les catégories et disponibilités sont des exemples configurables.", "openDemo": "Afficher la démonstration de recherche, filtres et fiches",
+    "sourceNote": "Transcription de la carte d’origine du 17 novembre 2026. Les prix correspondent à la section indiquée ; portions et prix par personne ne sont pas supposés. Confirmez la carte actuelle avec notre équipe.",
+    "missingNote": "La source ne fournit pas de listes complètes d’ingrédients ni de disponibilité en temps réel. Les allergènes sont reproduits tels qu’indiqués ; une liste vide ne signifie pas absence d’allergènes.",
+    "managedSourceNote": "Carte publiée par l’équipe du restaurant. Renseignez-vous sur les informations en attente.", "managedMissingNote": "Ingrédients, allergènes et disponibilité selon les informations publiées par l’équipe.", "managedSourceLanguage": "En l’absence de traduction, le texte original espagnol est conservé.", "managedAllergenSource": "Informations publiées par l’équipe du restaurant.",
+    "ui": {
+      "all": "Tout", "search": "Rechercher dans la carte", "searchPlaceholder": "Nom ou description du produit…", "clear": "Effacer la recherche", "subcategory": "Section", "allSections": "Toutes les sections", "categories": "Filtrer par catégorie",
+      "viewLabel": "Présentation de la carte", "compactView": "Vue compacte", "visualView": "Vue visuelle", "specialtiesToggle": "Découvrir la sélection de la maison", "unknownShort": "Nous consulter", "availableShort": "Disponible", "unavailableShort": "Indisponible",
+      "results": "produits trouvés", "result": "produit trouvé", "noResults": "Aucun produit ne correspond à ces filtres.", "reset": "Réinitialiser les filtres", "close": "Fermer la fiche", "details": "Voir les détails", "photoPending": "Emplacement photo",
+      "description": "Description", "descriptionMissing": "La carte ne fournit pas de description de ce produit.", "ingredients": "Ingrédients", "ingredientsMissing": "La source ne fournit pas de liste complète des ingrédients.", "allergens": "Allergènes indiqués", "unknownAllergens": "Allergènes : informations en attente", "allergenSource": "Indications de la carte d’origine ; elles ne constituent pas une composition complète.",
+      "additional": "Informations complémentaires", "pricePending": "Prix en attente", "availability": "Disponibilité", "unknown": "Nous consulter pour la disponibilité", "available": "Disponible", "unavailable": "Indisponible", "demo": "Démonstration · ce n’est pas la carte réelle", "source": "Informations sur la carte", "sourceLanguage": "Les noms et descriptions sans traduction conservent le texte original espagnol du restaurant.",
+      "noJavaScript": "La carte est lisible sans JavaScript. Activez-le pour la recherche, les filtres et les fiches détaillées.", "carousel": "Sélection de plats", "previous": "Plat précédent", "next": "Plat suivant", "slide": "diapositive", "price": "Prix publié", "illustrative": "Image illustrative de la catégorie, pas une photographie du plat.",
+      "allergenNames": { "gluten": "Gluten", "shellfish": "Fruits de mer (selon la source)", "eggs": "Œufs", "fish": "Poisson", "peanuts": "Arachides", "soy": "Soja", "milk": "Lait", "nuts": "Fruits à coque (selon la source)", "celery": "Céleri", "mustard": "Moutarde", "sesame": "Sésame", "sulphites": "Dioxyde de soufre et sulfites", "lupin": "Lupin", "molluscs": "Mollusques" }
+    }
+  },
+  "Footer": {
+    "location": "Málaga, Espagne", "tagline": "L’esprit méditerranéen, le plaisir de partager.", "explore": "La taverne", "follow": "Suivez-nous", "legalTitle": "Informations légales", "privacy": "Confidentialité", "cookies": "Cookies", "legal": "Mentions légales", "legalPending": "Mentions légales et politique de confidentialité : textes à fournir par le propriétaire.", "signature": "Taberna Don Juan · Málaga", "sources": "Informations et prix du site d’origine. Les images d’ambiance sont identifiées dans chaque section."
+  }
+}
