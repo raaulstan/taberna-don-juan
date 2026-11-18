@@ -2,14 +2,15 @@
 
 ## Estado de esta entrega
 
-Prueba pública desplegada y verificada el **17/11/2026**:
+Prueba pública desplegada el **17/11/2026** y actualizada con las traducciones de productos el **18/11/2026**:
 
 - Web para compartir: **https://taberna-don-juan-prueba.vercel.app**.
 - Repositorio: **https://github.com/raaulstan/taberna-don-juan**.
 - Proyecto Vercel: `rauls-projects-953cfa67/taberna-don-juan`.
 - Entorno: **Preview**, catálogo local, sin requerir login de Vercel para abrir el enlace.
-- Despliegue: `dpl_FhkVHLUx4gYVkc1vWdZZ4Y16nGTk`, origen `https://taberna-don-juan-59avvyrci-rauls-projects-953cfa67.vercel.app`.
+- Despliegue actual: `dpl_EdtZMhEoNGCGZSwDvMoAAjicTAh3`, origen `https://taberna-don-juan-2p5d7k40b-rauls-projects-953cfa67.vercel.app`.
 - Build remoto Next.js/TypeScript correcto. Verificados HTTP 200, título «Taberna Don Juan», 92 platos, 134 bebidas, filtros, favicon, cambio de idioma, navbar y menú móvil; cero errores de hidratación observados.
+- En la actualización del 18/11 se verificaron online nombres/descripciones de platos y nombres de bebidas en EN/FR/RO/IT/DE, además del cambio de idioma desde el selector y la presentación móvil.
 
 El enlace corto es un alias de esta preview. Para moverlo a una nueva prueba se usa `vercel alias set NUEVA_URL taberna-don-juan-prueba.vercel.app --scope rauls-projects-953cfa67`.
 

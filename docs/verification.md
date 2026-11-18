@@ -126,6 +126,7 @@ Detalles, duración de la muestra y límites de esa observación en `visual-poli
 - Los diccionarios de platos se validan contra el conjunto de IDs; faltas de cobertura impiden pasar las pruebas. La búsqueda funciona en el idioma elegido y en español.
 - `getLocalizedCatalog` limita el DTO público al idioma solicitado más el original, evitando enviar todos los idiomas al navegador.
 - Lint, TypeScript y build correctos. **77 unitarias/integración correctas** y **121 E2E correctas + 1 omisión prevista**, ejecución final con cuatro workers. Verificados los cinco idiomas en tarjetas, fichas enlazadas, descripciones, atributos `lang`, búsqueda y bebidas, además de las regresiones completas de responsive, foco e hidratación.
+- Desplegado en Vercel y actualizado el alias público `https://taberna-don-juan-prueba.vercel.app`. Verificados sin sesión nombres, descripciones y bebidas en los cinco idiomas, cambio ES→EN desde el selector, búsqueda y vista móvil; cero errores de hidratación observados. Commit de aplicación: `19eec24`.
 
 ## Límites de lo comprobado
 

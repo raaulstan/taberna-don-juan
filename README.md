@@ -311,7 +311,7 @@ La configuración está en `vercel.json`:
 
 ### Prueba pública / Preview
 
-Despliegue verificado el **17/11/2026**:
+Despliegue inicial del **17/11/2026**, actualizado y verificado con las traducciones completas de la carta el **18/11/2026**:
 
 - URL para compartir: <https://taberna-don-juan-prueba.vercel.app>.
 - Proyecto: `taberna-don-juan`, en el espacio `rauls-projects-953cfa67`.
