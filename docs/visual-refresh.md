@@ -26,7 +26,8 @@ Este documento recoge el estado actual tras las correcciones visuales del usuari
 - Español, inglés, francés, rumano, italiano y alemán: `es`, `en`, `fr`, `ro`, `it`, `de`.
 - Selector desplegable con nombres nativos, idioma actual marcado, teclado/flechas/Home/End, Escape y cierre exterior. Conserva ruta y hash al cambiar de idioma. Sin precarga automática de las otras cinco rutas.
 - Diccionarios completos de interfaz, home, cartas y footer; páginas legales traducidas. La carga de diccionarios se mantiene en servidor, sin enviar los seis al navegador.
-- Categorías traducidas en las seis lenguas. Los nombres/descripciones de productos conservan el original cuando no hay traducción del registro; el atributo `lang` identifica correctamente ese texto. No se han traducido por inferencia ingredientes ni alérgenos de productos.
+- Categorías y los 92 nombres/descripciones de platos locales traducidos a las seis lenguas. También se traducen las denominaciones genéricas de bebidas, conservando marcas y nombres propios. Los atributos `lang` identifican el idioma real. Los datos de composición y alérgenos mantienen el contenido publicado.
+- El explorador recibe solo el idioma elegido y el original español para búsqueda bilingüe, en lugar de recibir los cinco diccionarios adicionales. Las traducciones se preparan en servidor durante el renderizado estático.
 - Canonical/hreflang, sitemap, Open Graph y formato monetario adaptados. Las tres rutas principales por idioma se prerenderizan.
 - El CMS conserva su contrato editorial ES/EN existente. En los idiomas nuevos se utiliza la traducción estática de la interfaz; textos de datos sin traducción conservan su fuente original.
 

@@ -6,7 +6,7 @@ import { ArrowRight } from "lucide-react";
 
 import { Reveal } from "@/components/motion/reveal";
 import { CatalogExplorer } from "@/features/menu/components/catalog-explorer";
-import { getCatalog } from "@/features/menu/data/get-catalog";
+import { getLocalizedCatalog } from "@/features/menu/data/get-catalog";
 import { getMenuMessages } from "@/features/menu/messages";
 import { isLocale } from "@/i18n/config";
 import { localizedMetadata } from "@/lib/seo/metadata";
@@ -24,7 +24,7 @@ export default async function FoodMenuPage({ params }: PageProps) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
   setRequestLocale(locale);
-  const [catalog, messages] = await Promise.all([getCatalog("food"), getMenuMessages(locale)]);
+  const [catalog, messages] = await Promise.all([getLocalizedCatalog("food", locale), getMenuMessages(locale)]);
 
   return (
     <>

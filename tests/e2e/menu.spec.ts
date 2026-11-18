@@ -107,7 +107,7 @@ test("bebidas conserva la ruta en inglés y permite buscar sin acentos en ambas 
   await expect(page.locator(".menu-entry-price")).toHaveText("€2.70");
   await page.getByRole("button", { name: "Compact view", exact: true }).click();
   await expect(page.locator(".menu-entry-media")).toHaveCount(0);
-  await expect(page.getByRole("button", { name: "Café bombón", exact: true })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Bombón coffee", exact: true })).toBeVisible();
 });
 
 test("la carta mantiene el idioma de ruta y metadatos propios", async ({ page, request }) => {

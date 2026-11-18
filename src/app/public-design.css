@@ -132,7 +132,7 @@
 .public-site .menu-entry-section { color: var(--oak); font-size: 11px; line-height: 1.6; letter-spacing: .05em; }
 .public-site .menu-entry-heading { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 1rem; align-items: start; margin-top: .4rem; }
 .public-site .menu-entry h3 { font-family: var(--font-editorial), Georgia, serif; font-weight: 600; font-size: 1.4rem; line-height: 1.13; }
-.public-site .menu-entry-trigger { text-align: left; }
+.public-site .menu-entry-trigger { text-align: left; overflow-wrap: anywhere; hyphens: auto; }
 .public-site .menu-entry-trigger::after { content: ""; position: absolute; inset: 0; }
 .public-site .menu-entry-trigger:focus-visible { outline: 0; }
 .public-site .menu-entry-trigger:focus-visible::after { outline: 2px solid var(--olive); outline-offset: 3px; }

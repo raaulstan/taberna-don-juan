@@ -149,7 +149,7 @@ npm run start
 
 El selector conserva la ruta y el fragmento de categoría/producto al cambiar de idioma. Los diccionarios se cargan en servidor; no se envían al navegador las seis traducciones completas a la vez.
 
-La interfaz y las categorías están traducidas. Los nombres y descripciones de productos mantienen el original cuando no existe una traducción revisada del registro, con su atributo `lang` correspondiente.
+La interfaz, las categorías y los **92 nombres/descripciones de la carta local** están traducidos a los seis idiomas. Las denominaciones genéricas de bebidas también cambian de idioma; las marcas y nombres propios conservan su grafía. La búsqueda acepta el texto traducido y el original español. Cada página recibe únicamente el idioma solicitado y el original, sin enviar las otras traducciones al navegador.
 
 ## Estructura del proyecto
 
@@ -207,6 +207,8 @@ Con `PUBLIC_DATA_SOURCE=local`:
 - Gastronomía: `src/features/menu/data/official-snapshot.ts`.
 - Bebidas: `src/features/menu/data/drinks-snapshot.ts`.
 - Categorías traducidas: `src/features/menu/data/category-translations.ts`.
+- Traducciones de platos: `src/features/menu/data/translations/food-{en,fr,ro,it,de}.json`.
+- Composición de traducciones y nombres de bebidas: `src/features/menu/data/product-translations.ts`.
 - Contacto base: `src/features/home/data/restaurant.ts`.
 
 Las bebidas proceden de las seis imágenes facilitadas para el proyecto. Se conservan formatos con precios distintos y se unifican únicamente las repeticiones idénticas de Pernod y Grand Marnier Amarillo.
@@ -291,8 +293,8 @@ La CI está en `.github/workflows/ci.yml` y ejecuta comprobaciones, cobertura y 
 
 ### Resultados locales registrados
 
-- 74 pruebas unitarias/integración correctas durante el acabado visual.
-- Suite pública completa anterior a la regresión de hidratación: 107 correctas y una omisión prevista del swipe desktop; el gesto sí se ejecuta en móvil.
+- **77 pruebas unitarias/integración correctas** tras completar las traducciones del catálogo.
+- **121 E2E públicas correctas y una omisión prevista** del swipe desktop; el gesto sí se ejecuta en móvil. La ejecución final se realiza con `npm run test:e2e -- --workers=4`.
 - Tras corregir la hidratación y el título, 47 E2E afectadas correctas y la misma omisión prevista, incluyendo captura de errores de hidratación en consola.
 - Lighthouse local de inicio, comida y bebidas: **100 rendimiento / 100 accesibilidad / 100 buenas prácticas / 100 SEO**, tanto desktop como móvil simulado, con CLS 0.
 

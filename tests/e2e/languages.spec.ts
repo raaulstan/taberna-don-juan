@@ -26,10 +26,10 @@ test("el selector de seis idiomas admite teclado, Escape y conserva ruta y categ
 });
 
 const translations = [
-  { locale: "fr", title: "Boissons", tagline: "Des saveurs familières. Des instants à savourer.", menu: "La carte", privacy: "Informations sur la confidentialité" },
-  { locale: "ro", title: "Băuturi", tagline: "Arome familiare. Momente de savurat.", menu: "Meniul nostru", privacy: "Informații privind confidențialitatea" },
-  { locale: "it", title: "Bevande", tagline: "I sapori di sempre. Momenti da assaporare.", menu: "Il menù", privacy: "Informazioni sulla privacy" },
-  { locale: "de", title: "Getränke", tagline: "Vertraute Aromen. Momente zum Genießen.", menu: "Unsere Speisekarte", privacy: "Informationen zum Datenschutz" },
+  { locale: "fr", title: "Boissons", tagline: "Des saveurs familières. Des instants à savourer.", menu: "La carte", privacy: "Informations sur la confidentialité", dish: "Croquettes de puchero" },
+  { locale: "ro", title: "Băuturi", tagline: "Arome familiare. Momente de savurat.", menu: "Meniul nostru", privacy: "Informații privind confidențialitatea", dish: "Crochete de puchero" },
+  { locale: "it", title: "Bevande", tagline: "I sapori di sempre. Momenti da assaporare.", menu: "Il menù", privacy: "Informazioni sulla privacy", dish: "Crocchette di puchero" },
+  { locale: "de", title: "Getränke", tagline: "Vertraute Aromen. Momente zum Genießen.", menu: "Unsere Speisekarte", privacy: "Informationen zum Datenschutz", dish: "Puchero-Kroketten" },
 ] as const;
 
 for (const language of translations) {
@@ -46,7 +46,7 @@ for (const language of translations) {
     await page.goto(`/${language.locale}/carta`);
     await expect(page.getByRole("heading", { level: 1 })).toHaveText(language.menu);
     await expect(page.locator(".menu-products > li")).toHaveCount(92);
-    await page.getByRole("button", { name: "Croquetas de Puchero", exact: true }).click();
+    await page.getByRole("button", { name: language.dish, exact: true }).click();
     await expect(page.getByRole("dialog")).toBeVisible();
     await expect(page.locator('a[href*="tabernadonjuan.com"]')).toHaveCount(0);
     await page.keyboard.press("Escape");
@@ -75,6 +75,34 @@ test("el selector funciona sin JavaScript y los seis idiomas figuran en sitemap"
     for (const locale of ["es", "en", "fr", "ro", "it", "de"]) expect(sitemap).toContain(`/${locale}/bebidas</loc>`);
   } finally { await context.close(); }
 });
+
+for (const language of [
+  { locale: "en", dish: "Puchero croquettes", description: "Homemade croquettes with the traditional flavour of puchero stew.", query: "cod pil", juice: "Pineapple juice", juiceQuery: "pineapple" },
+  { locale: "fr", dish: "Croquettes de puchero", description: "Croquettes maison aux saveurs du puchero traditionnel.", query: "morue pil", juice: "Jus d’ananas", juiceQuery: "ananas" },
+  { locale: "ro", dish: "Crochete de puchero", description: "Crochete de casă cu gustul tradițional al tocanei puchero.", query: "cod pil", juice: "Suc de ananas", juiceQuery: "ananas" },
+  { locale: "it", dish: "Crocchette di puchero", description: "Crocchette fatte in casa con il sapore del puchero tradizionale.", query: "baccala pil", juice: "Succo d’ananas", juiceQuery: "ananas" },
+  { locale: "de", dish: "Puchero-Kroketten", description: "Hausgemachte Kroketten mit dem traditionellen Geschmack des Puchero-Eintopfs.", query: "kabeljau pil", juice: "Ananassaft", juiceQuery: "ananassaft" },
+] as const) {
+  test(`productos, descripciones, búsqueda y bebidas traducidos: ${language.locale}`, async ({ page }) => {
+    await page.goto(`/${language.locale}/carta#producto-tapas-small-croquetas-de-puchero`);
+    const dialog = page.getByRole("dialog", { name: language.dish, exact: true });
+    await expect(dialog).toBeVisible();
+    await expect(dialog.getByRole("heading", { name: language.dish, exact: true })).toHaveAttribute("lang", language.locale);
+    await expect(dialog).toContainText(language.description);
+    await page.keyboard.press("Escape");
+    await page.getByRole("searchbox").fill(language.query);
+    await expect(page.locator(".menu-products > li")).toHaveCount(2);
+    const prices = await page.locator(".menu-entry-price").allTextContents();
+    expect(prices.some((price) => /6[.,]00/.test(price))).toBe(true);
+    expect(prices.some((price) => /19[.,]00/.test(price))).toBe(true);
+    await page.goto(`/${language.locale}/bebidas`);
+    await expect(page.locator(".menu-products > li")).toHaveCount(134);
+    await page.getByRole("searchbox").fill(language.juiceQuery);
+    await expect(page.locator(".menu-products > li")).toHaveCount(1);
+    await page.getByRole("button", { name: language.juice, exact: true }).click();
+    await expect(page.getByRole("dialog", { name: language.juice, exact: true })).toBeVisible();
+  });
+}
 
 test("el navbar anima el fondo en ambos sentidos sin cambiar el tamaño del logo", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "no-preference" });

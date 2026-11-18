@@ -1,5 +1,6 @@
 import type { AllergenCode, MenuCategory, MenuProduct } from "../domain/catalog";
 import { categoryTranslations } from "./category-translations";
+import { translatedFoodText } from "./product-translations";
 
 // Transcripción de la carta renderizada el 17/11/2026; docs/menu-data.md.
 // Las listas de iconos vacías se almacenan como null, nunca como "sin alérgenos".
@@ -141,8 +142,7 @@ export const officialProducts: MenuProduct[] = groups.flatMap((group) => group.r
   id: `${group.id}-${slug(name)}`,
   kind: "food" as const,
   categoryId: group.id,
-  name: { es: name },
-  description: { es: description },
+  ...translatedFoodText(`${group.id}-${slug(name)}`, name, description),
   priceCents,
   currency: "EUR" as const,
   image: null,

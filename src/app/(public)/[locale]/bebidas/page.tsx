@@ -7,7 +7,7 @@ import { ArrowRight, Phone, Wine } from "lucide-react";
 import { buttonVariants } from "@/components/ui/button";
 import { getPublicRestaurant } from "@/services/public/content";
 import { CatalogExplorer } from "@/features/menu/components/catalog-explorer";
-import { getCatalog } from "@/features/menu/data/get-catalog";
+import { getLocalizedCatalog } from "@/features/menu/data/get-catalog";
 import { demoDrinks } from "@/features/menu/data/demo-drinks";
 import { catalogSchema } from "@/features/menu/domain/catalog";
 import { getMenuMessages } from "@/features/menu/messages";
@@ -27,7 +27,7 @@ export default async function DrinksPage({ params }: PageProps) {
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
   setRequestLocale(locale);
-  const [catalog, messages, restaurant] = await Promise.all([getCatalog("drink"), getMenuMessages(locale), getPublicRestaurant()]);
+  const [catalog, messages, restaurant] = await Promise.all([getLocalizedCatalog("drink", locale), getMenuMessages(locale), getPublicRestaurant()]);
 
   return (
     <>

@@ -120,6 +120,13 @@ Detalles, duración de la muestra y límites de esa observación en `visual-poli
 - Capturas revisadas de banner, selector, catálogo, ficha y contacto en escritorio/móvil/tablet. Detalle y estado actual en `visual-refresh.md`.
 - Ajuste posterior del favicon: ICO multirresolución 16/32/48 desde `brand.webp`, en la raíz y con URL versionada/enlace shortcut. Comprobado HTTP 200, MIME `image/x-icon` y decodificación de las tres imágenes; build/lint y cuatro E2E de identidad/metadata correctos.
 
+## Actualización: traducción de productos de la carta · 18/11/2026
+
+- Añadidos los 92 nombres y descripciones en EN/FR/RO/IT/DE, manteniendo el original ES. Denominaciones de bebidas traducidas; marcas y nombres propios conservados. Los 92 platos y 134 bebidas mantienen sus IDs, precios, alérgenos, disponibilidad y procedencia.
+- Los diccionarios de platos se validan contra el conjunto de IDs; faltas de cobertura impiden pasar las pruebas. La búsqueda funciona en el idioma elegido y en español.
+- `getLocalizedCatalog` limita el DTO público al idioma solicitado más el original, evitando enviar todos los idiomas al navegador.
+- Lint, TypeScript y build correctos. **77 unitarias/integración correctas** y **121 E2E correctas + 1 omisión prevista**, ejecución final con cuatro workers. Verificados los cinco idiomas en tarjetas, fichas enlazadas, descripciones, atributos `lang`, búsqueda y bebidas, además de las regresiones completas de responsive, foco e hidratación.
+
 ## Límites de lo comprobado
 
 ### Corrección previa a publicación

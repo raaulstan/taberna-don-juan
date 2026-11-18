@@ -37,7 +37,7 @@ Las cinco categorías raíz solicitadas son configuración editorial de la nueva
 - **Alérgenos:** se transcriben únicamente los iconos con alt publicados junto a cada ficha, sin corregirlos ni deducirlos de la receta. «Lacteos» se presenta como «Lácteos». «Mariscos» y «Frutos Secos» se conservan como rótulos amplios de la fuente, sin convertirlos en declaraciones más precisas. La ausencia de iconos o el texto automático «No allergens» se convierte en **información pendiente**, nunca en «sin alérgenos».
 - **Disponibilidad:** todos los registros oficiales tienen `availability: "unknown"`. La interfaz omite ese estado en lugar de declarar disponibilidad por el mero hecho de estar publicado.
 - **Descripción extendida:** se muestra el texto completo disponible; no se redactan detalles culinarios adicionales como si fueran oficiales.
-- **Idiomas:** controles, metadata y categorías traducidos a las seis lenguas. Los nombres/descripciones sin traducción conservan el original con `lang="es"`; el contrato permite traducciones revisadas por registro. Las notas editoriales de procedencia se conservan en documentación, sin aparecer en la carta pública.
+- **Idiomas:** controles, metadata, categorías y los 92 nombres/descripciones locales traducidos a las seis lenguas. Los cinco diccionarios de platos están en `data/translations/food-*.json`, indexados por ID estable; la composición comprueba las entradas para evitar traducciones ausentes. Las notas editoriales de procedencia se conservan en documentación, sin aparecer en la carta pública.
 
 ## Bebidas facilitadas · 17/11/2026
 
@@ -59,7 +59,7 @@ El usuario aportó seis imágenes de la carta. La transcripción está en `src/f
 - Los precios se almacenan en céntimos, incluidos **Johnnie Walker Blue (75 €)** y **Johnnie Walker Premier (100 €)**. No se corrigen importes llamativos por suposición.
 - Se normalizan mayúsculas y acentos para lectura. Rótulos particulares como «Beefeather», «Brockman», «Martes Sant Azul/Rojos», «Southern Confort», «Limoncel», «Pappermint», «Manzanill» y «Vermú Conde de Artoiz» conservan la denominación visible; pueden revisarse editorialmente con el restaurante. «London N 1» se presenta como «London Nº 1».
 - Las imágenes no aportan descripciones, composición, alérgenos, disponibilidad ni fotos individuales: esos campos son `null`/`unknown`. Por petición del usuario, las bebidas no muestran descripción ni ingredientes y omiten datos ausentes. La vista visual y la ficha usan la ilustración neutra de bebida cuando falta foto.
-- Las seis categorías y los controles están traducidos a los seis idiomas. Los nombres conservan el texto de la carta en español. Búsqueda sin acentos, filtros combinables, modos compacto/visual, enlaces directos y lectura SSR reutilizan el explorador existente.
+- Las seis categorías, controles y denominaciones genéricas de bebidas están traducidos a los seis idiomas. Marcas, variantes comerciales y nombres propios conservan su grafía. Búsqueda sin acentos, filtros combinables, modos compacto/visual, enlaces directos y lectura SSR reutilizan el explorador existente. La búsqueda incluye el texto traducido y el original español.
 - La portada y metadata describen la selección real. Las notas de transcripción y composición no se muestran en la interfaz. La llamada mantiene el teléfono verificado.
 
 ### Demostración aislada
@@ -88,6 +88,8 @@ app/[locale]/carta o bebidas (RSC)
 `features/menu/domain/catalog.ts` define tipos y validación. Los importes se almacenan en **céntimos enteros**, moneda EUR; los datos desconocidos son `null` o `unknown`, no cero ni arrays que aparenten ausencia confirmada. Las descripciones también admiten `null` cuando la fuente solo publica nombre/precio. Las categorías soportan raíz y un nivel de subcategorías con orden configurable. Se rechazan duplicados, referencias huérfanas, jerarquías inválidas, productos de otra procedencia y especialidades inexistentes. Los registros `official` requieren URL y precio; los `provided` requieren precio, sin atribuirles una URL de origen inexistente.
 
 El cliente recibe solo datos serializables. Importa los tipos de Zod mediante `import type`; el esquema y el proveedor no entran en el bundle del explorador. La ficha y sus primitivas de diálogo se cargan bajo demanda con `React.lazy` y `Suspense`.
+
+Las páginas de carta usan `getLocalizedCatalog(kind, locale)` para proyectar nombres, descripciones, categorías y demás textos al idioma solicitado más el original español. El resto de idiomas se queda en el servidor. Los IDs, precios, alérgenos, disponibilidad y procedencia no se alteran por esa proyección. El catálogo local contiene las traducciones completas; el proveedor CMS mantiene el fallback al original para registros remotos sin traducción.
 
 El adaptador Supabase ya está implementado en `services/menu/supabase-menu-repository.ts`. Para activarlo:
 

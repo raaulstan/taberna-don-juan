@@ -1,5 +1,6 @@
 import type { MenuCategory, MenuProduct } from "../domain/catalog";
 import { categoryTranslations } from "./category-translations";
+import { translatedDrinkName } from "./product-translations";
 
 // Carta facilitada por el usuario en seis imágenes el 17/11/2026.
 // Solo nombres y precios: no se deducen medidas, ingredientes ni alérgenos.
@@ -168,7 +169,7 @@ export const drinkProducts: MenuProduct[] = groups.flatMap((group) => group.rows
   id: `${group.id}-${slug(name)}`,
   kind: "drink" as const,
   categoryId: group.id,
-  name: { es: name },
+  name: translatedDrinkName(name),
   description: null,
   priceCents,
   currency: "EUR" as const,

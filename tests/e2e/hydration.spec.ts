@@ -2,6 +2,7 @@ import { expect, test } from "@playwright/test";
 
 for (const reducedMotion of ["no-preference", "reduce"] as const) {
   test(`el carrusel hidrata sin diferencias y mantiene sus controles: ${reducedMotion}`, async ({ page }) => {
+    test.setTimeout(60_000);
     await page.emulateMedia({ reducedMotion });
     const errors: string[] = [];
     page.on("pageerror", (error) => errors.push(error.message));

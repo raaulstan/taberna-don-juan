@@ -19,7 +19,7 @@ export function filterProducts(catalog: MenuCatalog, query: string, categoryId: 
   const ids = new Set([categoryId, ...catalog.categories.filter((category) => category.parentId === categoryId).map((category) => category.id)]);
   return catalog.products.filter((product) => {
     if (categoryExists && !ids.has(product.categoryId)) return false;
-    const haystack = normalizeSearch(`${localize(product.name, locale)} ${localize(product.description, locale)}`);
+    const haystack = normalizeSearch(`${localize(product.name, locale)} ${localize(product.description, locale)} ${product.name.es} ${product.description?.es ?? ""}`);
     return tokens.every((token) => haystack.includes(token));
   });
 }

@@ -1,10 +1,12 @@
 import { describe, expect, it, vi } from "vitest";
 
-import { getCatalog } from "@/features/menu/data/get-catalog";
+import { getCatalog, getLocalizedCatalog } from "@/features/menu/data/get-catalog";
 import { demoDrinks } from "@/features/menu/data/demo-drinks";
 import { catalogSchema, type MenuRepository } from "@/features/menu/domain/catalog";
-import { filterProducts, formatPrice } from "@/features/menu/domain/queries";
+import { filterProducts, formatPrice, localize } from "@/features/menu/domain/queries";
 import { localMenuRepository } from "@/services/menu/local-menu-repository";
+import { locales } from "@/i18n/config";
+import { foodTranslations, translatedProductLocales } from "@/features/menu/data/product-translations";
 
 describe("catálogo gastronómico y procedencia", () => {
   it("valida las 92 referencias y separa tapas de carta sin confundir precios", async () => {
@@ -110,5 +112,47 @@ describe("búsqueda y categorías configurables", () => {
   it("formatea céntimos sin redondear importes publicados incorrectamente", () => {
     expect(formatPrice(1390, "es")).toMatch(/13,90/);
     expect(formatPrice(350, "en")).toBe("€3.50");
+  });
+});
+
+describe("traducciones reales del catálogo", () => {
+  it("cubre las 92 referencias en los cinco idiomas sin entradas huérfanas ni descripciones en español", async () => {
+    const food = await getCatalog("food");
+    const ids = food.products.map((product) => product.id).sort();
+    for (const locale of translatedProductLocales) {
+      expect(Object.keys(foodTranslations[locale]).sort()).toEqual(ids);
+      for (const product of food.products) {
+        expect(product.name[locale]?.trim().length).toBeGreaterThan(0);
+        expect(product.description?.[locale]?.trim().length).toBeGreaterThan(0);
+        expect(product.description?.[locale]).not.toBe(product.description?.es);
+      }
+    }
+  });
+
+  it("busca por el nombre traducido y el original, y mantiene formatos, marcas y precios", async () => {
+    const food = await getCatalog("food");
+    for (const [locale, query] of [["en", "cod pil"], ["fr", "morue pil"], ["ro", "cod pil"], ["it", "baccala pil"], ["de", "kabeljau pil"]] as const) {
+      expect(filterProducts(food, query, "all", locale).map((product) => product.priceCents).sort((a, b) => a! - b!)).toEqual([600, 1900]);
+      expect(filterProducts(food, "bacalao al pil pil", "all", locale)).toHaveLength(2);
+    }
+    const drinks = await getCatalog("drink");
+    for (const [locale, query] of [["en", "pineapple"], ["fr", "ananas"], ["ro", "ananas"], ["it", "ananas"], ["de", "ananassaft"]] as const) {
+      expect(filterProducts(drinks, query, "all", locale).map((product) => product.priceCents)).toEqual([270]);
+      expect(filterProducts(drinks, "hendrick", "all", locale).map((product) => localize(product.name, locale))).toEqual(["Hendrick’s"]);
+    }
+  });
+
+  it("envía solo el idioma elegido y el original sin alterar IDs ni datos del producto", async () => {
+    for (const kind of ["food", "drink"] as const) {
+      const original = await getCatalog(kind);
+      for (const locale of locales) {
+        const catalog = await getLocalizedCatalog(kind, locale);
+        expect(catalog.products.map(({ id, categoryId, priceCents, allergens, availability }) => ({ id, categoryId, priceCents, allergens, availability }))).toEqual(original.products.map(({ id, categoryId, priceCents, allergens, availability }) => ({ id, categoryId, priceCents, allergens, availability })));
+        for (const product of catalog.products) {
+          expect(Object.keys(product.name).sort()).toEqual(locale === "es" ? ["es"] : ["es", locale].sort());
+          if (product.description) expect(Object.keys(product.description).sort()).toEqual(locale === "es" ? ["es"] : ["es", locale].sort());
+        }
+      }
+    }
   });
 });
