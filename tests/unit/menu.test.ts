@@ -61,7 +61,7 @@ describe("catálogo gastronómico y procedencia", () => {
     expect(catalog.products.every((product) => product.description === null && product.image === null && product.ingredients === null && product.allergens === null && product.availability === "unknown" && product.sourceUrl === null)).toBe(true);
   });
 
-  it("permite sustituir el proveedor sin que la UI dependa de Supabase", async () => {
+  it("permite usar un proveedor de pruebas sin modificar el catálogo local", async () => {
     const load = vi.fn().mockResolvedValue(demoDrinks);
     const repository: MenuRepository = { getCatalog: load };
     expect(await getCatalog("drink", repository)).toBe(demoDrinks);

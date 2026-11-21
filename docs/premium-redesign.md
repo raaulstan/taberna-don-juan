@@ -1,6 +1,6 @@
 # Rediseño editorial premium · 17/11/2026
 
-> Estado visual actual y correcciones posteriores: [Acabado visual e idiomas](visual-refresh.md). Incluye seis idiomas, limpieza de textos/imágenes, banner sin recuadro lateral, favicon y navbar/menú móvil animados.
+> Documento histórico del rediseño. Estado actual: [Acabado visual e idiomas](visual-refresh.md) y [Arquitectura pública](architecture.md). El panel y la base de datos se han eliminado del proyecto.
 
 ## Auditoría previa y límites
 

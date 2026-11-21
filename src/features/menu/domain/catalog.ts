@@ -6,7 +6,7 @@ export const allergenCodes = ["gluten", "shellfish", "eggs", "fish", "peanuts", 
 export type AllergenCode = (typeof allergenCodes)[number];
 const textSchema = z.object({ es: z.string().min(1), en: z.string().min(1).optional(), fr: z.string().min(1).optional(), ro: z.string().min(1).optional(), it: z.string().min(1).optional(), de: z.string().min(1).optional() });
 const kindSchema = z.enum(["food", "drink"]);
-const originSchema = z.enum(["official", "provided", "demo", "managed"]);
+const originSchema = z.enum(["official", "provided", "demo"]);
 
 export const productSchema = z.object({
   id: z.string().min(1),
@@ -16,10 +16,7 @@ export const productSchema = z.object({
   description: textSchema.nullable(),
   priceCents: z.number().int().nonnegative().nullable(),
   currency: z.literal("EUR"),
-  image: z.object({ src: z.string().refine((value) => {
-    if (value.startsWith("/images/") && !value.includes("..")) return true;
-    try { const url = new URL(value); const configured = process.env.NEXT_PUBLIC_SUPABASE_URL; return Boolean(configured && url.origin === new URL(configured).origin && url.protocol === "https:" && url.pathname.startsWith("/storage/v1/object/public/restaurant-media/")); } catch { return false; }
-  }, "Imagen fuera del origen permitido."), alt: textSchema }).nullable(),
+  image: z.object({ src: z.string().refine((value) => value.startsWith("/images/") && !value.includes(".."), "Utiliza una imagen local bajo /images/."), alt: textSchema }).nullable(),
   ingredients: z.array(textSchema).nullable(),
   allergens: z.array(z.enum(allergenCodes)).min(1).nullable(),
   availability: z.enum(["available", "unavailable", "unknown"]),

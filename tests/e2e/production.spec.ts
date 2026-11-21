@@ -16,40 +16,19 @@ test("contacto, enlaces legales y metadata social están disponibles sin rastrea
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Privacy information");
 });
 
-test("el panel sigue cerrado sin configuración, con headers privados en todas sus rutas", async ({ page, request }) => {
-  for (const path of ["/admin/carta", "/admin/contenido", "/admin/empleados", "/admin/auditoria"]) {
+test("las antiguas rutas administrativas ya no existen", async ({ request }) => {
+  for (const path of ["/admin/carta", "/admin/categorias", "/admin/contenido", "/admin/empleados", "/admin/auditoria", "/admin/cuenta", "/admin/estadisticas"]) {
     const response = await request.get(path);
-    expect(response.url()).toContain("/acceso?motivo=configuracion");
-    expect(response.headers()["cache-control"]).toContain("no-store");
-    expect(response.headers()["x-robots-tag"]).toContain("noindex");
+    expect(response.status()).toBe(404);
+    expect(new URL(response.url()).pathname).toBe(path);
   }
-  await page.goto("/acceso");
-  await expect(page.getByText("No hay acceso de demostración.", { exact: false })).toBeVisible();
-  await expect(page.getByRole("button", { name: "Entrar al panel" })).toHaveCount(0);
 });
 
-test("manifest privado, shell offline y caché no personal de la PWA", async ({ page, request, context }) => {
-  const manifest = await request.get("/admin/manifest.webmanifest");
-  expect(await manifest.json()).toMatchObject({ start_url: "/admin", scope: "/admin", display: "standalone", icons: expect.arrayContaining([expect.objectContaining({ purpose: "maskable" })]) });
+test("la web pública no instala la PWA privada ni crea sesiones", async ({ page, request, context }) => {
+  for (const path of ["/admin/manifest.webmanifest", "/admin/sw.js", "/admin/offline.html"]) expect((await request.get(path)).status()).toBe(404);
   await page.goto("/es");
-  await page.evaluate(async () => {
-    const registration = await navigator.serviceWorker.register("/admin/sw.js", { scope: "/admin" });
-    const worker = registration.installing ?? registration.waiting ?? registration.active;
-    if (worker && worker.state !== "activated") await new Promise<void>((resolve, reject) => worker.addEventListener("statechange", () => { if (worker.state === "activated") resolve(); if (worker.state === "redundant") reject(new Error("service worker installation failed")); }));
-  });
-  const cached = await page.evaluate(async () => { const keys = await caches.keys(); return (await Promise.all(keys.map(async (key) => (await (await caches.open(key)).keys()).map((request) => new URL(request.url).pathname)))).flat(); });
-  expect(cached.sort()).toEqual(["/admin/offline.html", "/icons/icon-192.png", "/icons/icon-512.png", "/icons/maskable-512.png"].sort());
-  await context.setOffline(true);
-  const offline = await page.goto("/admin");
-  expect(offline?.status()).toBe(503);
-  await expect(page.getByRole("heading", { name: "Necesitas conexión" })).toBeVisible();
-  await expect(page.locator("input, form, table")).toHaveCount(0);
-  await expect.poll(() => page.locator('img[alt="Taberna Don Juan"]').evaluate((image) => image instanceof HTMLImageElement && image.complete && image.naturalWidth > 0)).toBe(true);
-  await page.evaluate(() => navigator.serviceWorker.controller?.postMessage({ type: "LOGOUT" }));
-  await expect.poll(() => page.evaluate(async () => (await caches.keys()).filter((key) => key.startsWith("tdj-admin-shell-")).length)).toBe(0);
-  await context.setOffline(false);
-  await page.goto("/es");
-  expect(await page.evaluate(() => navigator.serviceWorker.controller)).toBeNull();
+  expect(await page.evaluate(async () => (await navigator.serviceWorker.getRegistrations()).length)).toBe(0);
+  expect(await context.cookies()).toEqual([]);
 });
 
 test("health no expone variables ni detalles de proveedores", async ({ request }) => {

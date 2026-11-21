@@ -23,12 +23,6 @@ export default defineConfig({
     timeout: 240_000,
     env: {
       NEXT_PUBLIC_SITE_URL: "http://127.0.0.1:3100",
-      NEXT_PUBLIC_SUPABASE_URL: "",
-      NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: "",
-      NEXT_PUBLIC_ADMIN_URL: "",
-      PUBLIC_DATA_SOURCE: "local",
-      RESEND_API_KEY: "",
-      RESEND_FROM_EMAIL: "",
     },
   },
 });

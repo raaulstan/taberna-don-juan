@@ -26,17 +26,17 @@ test("el contenido público y la navegación funcionan sin JavaScript", async ({
   await context.close();
 });
 
-test("el panel no expone contenido privado sin configuración ni sesión", async ({ page }) => {
-  const response = await page.goto("/admin");
-  await expect(page).toHaveURL(/\/acceso\?motivo=configuracion$/);
-  await expect(page.getByRole("heading", { name: "Acceso privado" })).toBeVisible();
-  await expect(page.getByText("La conexión con Supabase todavía no está configurada.")).toBeVisible();
-  await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /noindex/);
-  expect(response?.headers()["cache-control"]).toContain("no-store");
-  expect(response?.headers()["x-robots-tag"]).toContain("noindex");
+test("los accesos al panel y al login se han eliminado", async ({ page, request }) => {
+  for (const path of ["/admin", "/acceso"]) {
+    const response = await request.get(path);
+    expect(response.status()).toBe(404);
+    expect(new URL(response.url()).pathname).toBe(path);
+  }
+  await page.goto("/es");
+  await expect(page.locator('a[href*="/admin"], a[href*="/acceso"]')).toHaveCount(0);
 });
 
-for (const path of ["/es", "/en", "/acceso"]) {
+for (const path of ["/es", "/en"]) {
   test(`accesibilidad automatizada y ancho móvil: ${path}`, async ({ page }) => {
     await page.goto(path);
     const results = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze();
@@ -61,7 +61,7 @@ test("publica sitemap, robots, JSON-LD y preparación PWA", async ({ page, reque
   expect(xml).toContain("/en</loc>");
   expect(xml).not.toContain("/admin");
   const robots = await request.get("/robots.txt");
-  expect(await robots.text()).toContain("Disallow: /admin");
+  expect(await robots.text()).toContain("Disallow: /api/");
   const manifest = await request.get("/manifest.webmanifest");
   expect(await manifest.json()).toMatchObject({ name: "Taberna Don Juan", start_url: "/es" });
   for (const icon of ["/favicon.ico", "/icon.svg", "/icons/favicon-brand.png", "/icons/icon-192.png", "/icons/icon-512.png", "/icons/apple-touch-icon.png"]) {

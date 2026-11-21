@@ -5,7 +5,7 @@
   },
   "Navigation": {
     "label": "Navigation principale", "home": "Accueil", "menu": "La carte", "drinks": "Boissons", "story": "Notre histoire", "contact": "Contact",
-    "languages": "Choisir la langue", "skip": "Aller au contenu", "staff": "Accès équipe", "openMenu": "Ouvrir le menu", "closeMenu": "Fermer le menu", "call": "Appelez-nous"
+    "languages": "Choisir la langue", "skip": "Aller au contenu", "openMenu": "Ouvrir le menu", "closeMenu": "Fermer le menu", "call": "Appelez-nous"
   },
   "Home": {
     "eyebrow": "Au cœur de Málaga", "title": "Taberna Don Juan", "heroLine": "Des saveurs familières. Des instants à savourer.",
@@ -20,7 +20,7 @@
     "specialtiesEyebrow": "Un aperçu de notre cuisine", "specialtiesTitle": "Des saveurs qui invitent à rester", "specialtiesDescription": "Une sélection de notre carte. Des saveurs méditerranéennes à déguster à votre rythme.",
     "carousel": "Sélection de plats", "slide": "diapositive", "previous": "Plat précédent", "next": "Plat suivant", "dishImage": "Image illustrative de la catégorie, pas une photographie du plat.",
     "viewSource": "Voir sur notre carte", "price": "Prix publié", "pricesNote": "Prix du site d’origine, consultés le 17 novembre 2026. Confirmez la carte actuelle auprès du restaurant.",
-    "managedPrices": "Carte publiée par l’équipe du restaurant. Renseignez-vous sur les informations en attente.", "managedImage": "Photographie publiée par l’équipe du restaurant.", "noSpecialties": "Aucune spécialité n’est publiée pour le moment. Consultez la carte ou contactez notre équipe.",
+    "noSpecialties": "Aucune spécialité n’est publiée pour le moment. Consultez la carte ou contactez notre équipe.",
     "croquettesName": "Croquettes de puchero", "croquettesDescription": "Croquettes maison aux saveurs du puchero traditionnel. Prix de la section tapas.",
     "riceName": "Riz señoret", "riceDescription": "Avec seiche, langoustines, moules et crevettes, à déguster sans se salir les doigts.",
     "octopusName": "Poulpe grillé", "octopusDescription": "Poulpe grillé aux notes fumées, proposé dans notre sélection De la Mar.",
@@ -33,7 +33,7 @@
     "storyDescription": "Notre approche associe tradition méditerranéenne et créativité. La bonne cuisine, le soin des détails et les moments partagés en bonne compagnie nous inspirent.",
     "storyQuote": "Bonne cuisine. Bonne compagnie. Beaux moments.", "storyImage": "Image d’ambiance du site d’origine ; ce n’est pas une photographie vérifiée du restaurant.",
     "contactEyebrow": "Retrouvez-nous à Málaga", "contactTitle": "Rendez-vous chez Don Juan", "contactDescription": "Dans le centre historique, la ville à deux pas et la table comme lieu de rencontre.",
-    "addressLabel": "Où nous trouver", "map": "Itinéraire", "directions": "Obtenir l’itinéraire", "closures": "Fermetures exceptionnelles publiées", "managedContact": "Informations publiées par l’équipe du restaurant.",
+    "addressLabel": "Où nous trouver", "map": "Itinéraire", "directions": "Obtenir l’itinéraire", "closures": "Fermetures exceptionnelles publiées",
     "hoursLabel": "Horaires", "hoursDays": "Du lundi au dimanche", "hoursTime": "12:00–00:00", "hoursNote": "Horaires du site d’origine. Appelez-nous pour les jours fériés et changements éventuels.",
     "phoneLabel": "Parlons-en", "mobileLabel": "Portable", "landlineLabel": "Fixe", "contactSource": "Informations consultées sur le site d’origine le 17 novembre 2026."
   },
@@ -49,7 +49,6 @@
     "demoTitle": "Démonstration de l’interface des boissons", "demoNote": "Contenu de démonstration séparé de la carte réelle. Ces exemples ne sont pas proposés à la vente et ne comportent aucun prix ni ingrédient inventé. Les catégories et disponibilités sont des exemples configurables.", "openDemo": "Afficher la démonstration de recherche, filtres et fiches",
     "sourceNote": "Transcription de la carte d’origine du 17 novembre 2026. Les prix correspondent à la section indiquée ; portions et prix par personne ne sont pas supposés. Confirmez la carte actuelle avec notre équipe.",
     "missingNote": "La source ne fournit pas de listes complètes d’ingrédients ni de disponibilité en temps réel. Les allergènes sont reproduits tels qu’indiqués ; une liste vide ne signifie pas absence d’allergènes.",
-    "managedSourceNote": "Carte publiée par l’équipe du restaurant. Renseignez-vous sur les informations en attente.", "managedMissingNote": "Ingrédients, allergènes et disponibilité selon les informations publiées par l’équipe.", "managedSourceLanguage": "En l’absence de traduction, le texte original espagnol est conservé.", "managedAllergenSource": "Informations publiées par l’équipe du restaurant.",
     "ui": {
       "all": "Tout", "search": "Rechercher dans la carte", "searchPlaceholder": "Nom ou description du produit…", "clear": "Effacer la recherche", "subcategory": "Section", "allSections": "Toutes les sections", "categories": "Filtrer par catégorie",
       "viewLabel": "Présentation de la carte", "compactView": "Vue compacte", "visualView": "Vue visuelle", "specialtiesToggle": "Découvrir la sélection de la maison", "unknownShort": "Nous consulter", "availableShort": "Disponible", "unavailableShort": "Indisponible",

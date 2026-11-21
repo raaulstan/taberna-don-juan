@@ -3,13 +3,10 @@ import "server-only";
 import type { LocalizedText, MenuCatalog, MenuKind, MenuRepository } from "../domain/catalog";
 import type { Locale } from "@/i18n/config";
 import { localMenuRepository } from "@/services/menu/local-menu-repository";
-import { supabaseMenuRepository } from "@/services/menu/supabase-menu-repository";
-import { managedPublicData } from "@/services/public/content";
 
-// Único punto de composición del proveedor. Un futuro adaptador Supabase debe
-// implementar MenuRepository y validar el mismo contrato sin cambiar la UI.
+// La carta se obtiene exclusivamente de los archivos locales del proyecto.
 export async function getCatalog(kind: MenuKind, repository?: MenuRepository) {
-  return (repository ?? (managedPublicData() ? supabaseMenuRepository : localMenuRepository)).getCatalog(kind);
+  return (repository ?? localMenuRepository).getCatalog(kind);
 }
 
 // El navegador recibe solo el idioma solicitado y el original para buscar por

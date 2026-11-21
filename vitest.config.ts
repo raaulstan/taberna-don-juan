@@ -10,17 +10,17 @@ export default defineConfig({
   },
   test: {
     environment: "node",
-    include: ["tests/unit/**/*.test.ts", "tests/integration/**/*.test.ts"],
+    include: ["tests/unit/**/*.test.ts"],
     env: { NEXT_PUBLIC_SITE_URL: "http://localhost:3000" },
     clearMocks: true,
     coverage: {
       provider: "v8",
       include: [
         "src/config/*.ts",
-        "src/features/auth/data/*.ts",
-        "src/features/notifications/validation/*.ts",
+        "src/features/menu/domain/*.ts",
+        "src/features/menu/data/get-catalog.ts",
         "src/lib/seo/*.ts",
-        "src/services/email/*.ts",
+        "src/services/public/content.ts",
       ],
       reporter: ["text", "html"],
     },

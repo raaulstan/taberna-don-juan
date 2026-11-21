@@ -4,7 +4,6 @@ import { getTranslations } from "next-intl/server";
 
 import { site } from "@/config/site";
 import { getPublicRestaurant } from "@/services/public/content";
-import { getAdminLoginUrl } from "@/config/admin";
 import { BrandLogo } from "@/components/layout/brand-logo";
 import type { Locale } from "@/i18n/config";
 import { readablePhone } from "@/lib/format/phone";
@@ -25,7 +24,7 @@ export async function PublicFooter({ locale }: { locale: Locale }) {
         <div><h2 className="eyebrow text-honey">{t("legalTitle")}</h2><ul className="mt-4 text-sm">{[["privacidad", t("privacy")], ["cookies", t("cookies")], ["aviso-legal", t("legal")]].map(([slug, label]) => <li key={slug}><Link href={`/${locale}/legal/${slug}`} className="inline-flex min-h-11 items-center underline underline-offset-4">{label}</Link></li>)}</ul></div>
       </div>
       <div className="border-t border-parchment/20">
-        <div className="site-container flex flex-col gap-4 py-6 text-xs text-parchment/85 sm:flex-row sm:items-center sm:justify-between"><p>© {new Date().getFullYear()} · {t("signature")}</p><Link href={getAdminLoginUrl()} prefetch={false} className="inline-flex min-h-11 items-center underline underline-offset-4">{nav("staff")}</Link></div>
+        <div className="site-container py-6 text-xs text-parchment/85"><p>© {new Date().getFullYear()} · {t("signature")}</p></div>
       </div>
     </footer>
   );

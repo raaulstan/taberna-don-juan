@@ -5,7 +5,7 @@ import { chromium } from "@playwright/test";
 import lighthouse from "lighthouse";
 
 const directory = join(process.cwd(), "lighthouse-report");
-const allowed = ["/es", "/es/carta", "/es/bebidas", "/acceso"];
+const allowed = ["/es", "/es/carta", "/es/bebidas"];
 const mobile = process.argv.includes("--mobile");
 const requested = process.argv.slice(2).filter((argument) => argument !== "--mobile");
 const paths = requested.length ? requested : allowed;

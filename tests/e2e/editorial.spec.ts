@@ -47,14 +47,14 @@ test("ambos modos y el contacto rápido se adaptan a los siete anchos", async ({
   await page.goto("/es");
   for (const width of [320, 375, 430, 768, 1024, 1440, 1920]) {
     await page.setViewportSize({ width, height: 900 });
-    expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+    await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
   }
   await page.goto("/en/carta");
   for (const name of ["Compact view", "Visual view"]) {
     await page.getByRole("button", { name, exact: true }).click();
     for (const width of [320, 375, 430, 768, 1024, 1440, 1920]) {
       await page.setViewportSize({ width, height: 900 });
-      expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
+      await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
     }
     await expect(page.locator(".menu-products > li")).toHaveCount(92);
   }
