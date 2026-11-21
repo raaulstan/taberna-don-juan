@@ -90,7 +90,7 @@
 .public-site .dish-artwork-plate svg { width: 28%; height: 28%; }
 .public-site .dish-artwork-signature { font: italic 1.25rem var(--font-editorial), Georgia, serif; opacity: .75; }
 .public-site .specialty-slide { align-items: stretch; background: #f2ebdf; }
-.public-site .specialty-media { aspect-ratio: 16 / 9; min-height: 175px; }
+.public-site .specialty-media { width: 100%; min-width: 0; aspect-ratio: 16 / 9; min-height: 0; }
 .public-site .specialty-copy { padding: 1.5rem; }
 .public-site .specialty-copy h3 { font-size: clamp(1.7rem, 3vw, 2.35rem); font-weight: 500; line-height: 1.05; }
 .public-site .specialty-editorial > div:last-child { margin-top: .1rem; }
@@ -262,6 +262,7 @@
 .public-site .specialty-copy { background: #f6f0e5; }
 .public-site .specialty-media .dish-artwork { background: radial-gradient(ellipse at 20% 10%, #b69b6350, transparent 65%), #34402d; color: #e1c58f; }
 .public-site .specialty-media .dish-artwork-plate, .public-site .specialty-media .dish-artwork-plate::before { border-color: #d5b88065; }
+.public-site .specialty-media .dish-artwork-plate { width: clamp(64px, 34%, 155px); flex-shrink: 0; }
 .public-site .specialty-media .dish-artwork-signature { font-size: 1.6rem; }
 .public-site .category-section { background: #efe5d4; }
 .public-site .category-gallery { gap: 1rem; }

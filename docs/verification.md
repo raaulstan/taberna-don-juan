@@ -24,6 +24,12 @@ El runner omite únicamente el swipe en el perfil de escritorio; el gesto se eje
 
 ## Publicación
 
+### Ajuste posterior del carrusel móvil
+
+La altura mínima de 175 px hacía que, a 320 px de viewport, la imagen intentara medir 311 px dentro de una tarjeta de 288 px. El carrusel ahora define una columna móvil explícita y columnas de escritorio con mínimos cero; la figura mide el 100 % del ancho disponible sin imponer esa altura mínima. El dibujo interior se adapta sin encogerse ni salir de su zona.
+
+Verificados los tres platos con Chromium y WebKit en 320, 360, 375, 390, 430, 768 y 1440 px: la imagen llena su figura y permanece dentro de la tarjeta. Capturas móviles revisadas en ambos motores. Lint y build correctos; 39 E2E afectadas correctas y una omisión prevista del swipe desktop.
+
 El código está en https://github.com/raaulstan/taberna-don-juan y el alias compartido es https://taberna-don-juan-prueba.vercel.app. Tras actualizar una preview se comprueban acceso sin sesión de Vercel, catálogos, idioma y HTTP 404 de las rutas retiradas.
 
 Comprobación remota del 21/11/2026 tras publicar `f83df98`: inicio HTTP 200, sin enlaces de acceso al equipo; nueve rutas/recursos antiguos con HTTP 404; 92 platos y 134 bebidas; cambio ES→EN y búsqueda de bebidas en francés correctos; cero cookies de sesión, registros de service worker o errores de hidratación en el contexto probado.

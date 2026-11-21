@@ -67,7 +67,7 @@ export function SpecialtiesCarousel({ slides, labels, onSelect }: CarouselProps)
           className="specialties-track relative flex snap-x snap-mandatory overflow-x-auto overscroll-x-contain"
         >
           {slides.map((slide, index) => (
-            <article key={slide.id} data-index={index} role="group" aria-roledescription={labels.slide} aria-label={`${index + 1} / ${slides.length}: ${slide.name}`} className="specialty-slide grid w-full min-w-0 shrink-0 snap-start snap-always md:grid-cols-[1fr_1.1fr]">
+            <article key={slide.id} data-index={index} role="group" aria-roledescription={labels.slide} aria-label={`${index + 1} / ${slides.length}: ${slide.name}`} className="specialty-slide grid w-full min-w-0 shrink-0 grid-cols-1 snap-start snap-always md:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)]">
               <figure className="specialty-media relative overflow-hidden">
                 <m.div initial={{ scale: 1 }} animate={{ scale: reduceMotion === false && active !== index ? 1.025 : 1 }} transition={{ duration: reduceMotion === false ? motionDuration.reveal : 0, ease: motionEase }} className="absolute inset-0 overflow-hidden">
                   {slide.image ? <Image src={slide.image} alt="" fill sizes="(min-width: 1280px) 520px, (min-width: 768px) 45vw, 100vw" className="object-cover" /> : <DishArtwork label={labels.placeholder ?? labels.image} />}
