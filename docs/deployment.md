@@ -8,6 +8,8 @@
 
 La aplicación es una web pública con archivos locales. No requiere base de datos, panel, cuentas del equipo, correo transaccional ni credenciales de servicios privados.
 
+Versión sin panel ni base de datos publicada y verificada el **21/11/2026**, desde el commit `f83df98`. Despliegue `dpl_6Rvna5jFc1MwSffv6KqhURVxuGJQ`, con el alias público indicado arriba. Build remoto correcto; comprobados los catálogos, idiomas y HTTP 404 de las rutas retiradas, sin cookies de sesión ni service workers.
+
 ## Desarrollo
 
 Node 24 LTS y npm:

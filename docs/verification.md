@@ -26,6 +26,8 @@ El runner omite únicamente el swipe en el perfil de escritorio; el gesto se eje
 
 El código está en https://github.com/raaulstan/taberna-don-juan y el alias compartido es https://taberna-don-juan-prueba.vercel.app. Tras actualizar una preview se comprueban acceso sin sesión de Vercel, catálogos, idioma y HTTP 404 de las rutas retiradas.
 
+Comprobación remota del 21/11/2026 tras publicar `f83df98`: inicio HTTP 200, sin enlaces de acceso al equipo; nueve rutas/recursos antiguos con HTTP 404; 92 platos y 134 bebidas; cambio ES→EN y búsqueda de bebidas en francés correctos; cero cookies de sesión, registros de service worker o errores de hidratación en el contexto probado.
+
 ## Alcance de la evidencia
 
 Se comprueba Chromium de escritorio y emulación móvil. Axe y teclado no equivalen a una auditoría completa de accesibilidad. Lighthouse local, cuando se ejecuta, no representa Core Web Vitals de campo. Las páginas legales siguen necesitando la información empresarial definitiva; no se han inventado datos del titular.
