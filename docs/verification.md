@@ -10,10 +10,10 @@ También se retiraron las dependencias, fixtures y pruebas correspondientes a es
 
 - Lint sin warnings.
 - Tipos de Next y TypeScript correctos, tras regenerar los tipos de rutas que antes incluían el panel.
-- **28 pruebas unitarias correctas**, cuatro archivos.
+- **31 pruebas unitarias correctas**, cinco archivos.
 - Cobertura V8 ejecutada: 84,61 % de sentencias y 84,72 % de líneas en los módulos incluidos.
 - Compilación de producción correcta, ejecutada por el runner E2E.
-- Suite completa de navegador: **119 correctas y una omisión prevista**, con cuatro workers.
+- Suite completa de navegador: **123 correctas y una omisión prevista**, con cuatro workers.
 - `/admin`, `/acceso`, las antiguas pantallas de gestión y los recursos de la PWA privada responden 404.
 - No se muestran enlaces de acceso al equipo, no se crean cookies de sesión y no se registra el antiguo service worker.
 - Inicio, 92 platos, 134 bebidas y seis idiomas conservan datos, precios y comportamiento.
@@ -23,6 +23,12 @@ También se retiraron las dependencias, fixtures y pruebas correspondientes a es
 El runner omite únicamente el swipe en el perfil de escritorio; el gesto se ejecuta en el perfil móvil. Los informes de Playwright y cobertura son artefactos locales excluidos de Git.
 
 ## Publicación
+
+### Textos legales y descripciones · 23/11/2026
+
+Privacidad, cookies y aviso legal redactados con apartados e índices en seis idiomas, incluyendo alojamiento, datos técnicos, contacto, derechos, conservación, enlaces externos y uso de la web. La identificación del titular y las condiciones contractuales/conservación no verificadas se señalan como pendientes desde `src/config/legal.ts`; no se han creado datos empresariales ni correos ficticios. Se han consultado las políticas oficiales de Vercel, sin afirmar un acuerdo de tratamiento aplicable a un plan no confirmado.
+
+Los 92 platos mantienen su descripción de origen y añaden una frase editorial breve en los seis idiomas. Se comprueba un tamaño limitado, con hasta dos líneas en las tarjetas y lectura completa en ficha. Los precios, nombres, alérgenos y las bebidas sin descripción se conservan. Pruebas de documentos, campos pendientes, ausencia de cookies y presentación responsive correctas.
 
 ### Ajuste posterior del carrusel móvil
 

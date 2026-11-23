@@ -116,6 +116,16 @@ describe("búsqueda y categorías configurables", () => {
 });
 
 describe("traducciones reales del catálogo", () => {
+  it("mantiene las descripciones ampliadas en un tamaño breve y legible", async () => {
+    const catalog = await getCatalog("food");
+    for (const product of catalog.products) {
+      const spanishWords = product.description!.es.trim().split(/\s+/).length;
+      expect(spanishWords, product.id).toBeGreaterThanOrEqual(12);
+      expect(spanishWords, product.id).toBeLessThanOrEqual(42);
+      for (const locale of locales) expect(product.description![locale]!.length, `${product.id}:${locale}`).toBeLessThanOrEqual(440);
+    }
+  });
+
   it("cubre las 92 referencias en los cinco idiomas sin entradas huérfanas ni descripciones en español", async () => {
     const food = await getCatalog("food");
     const ids = food.products.map((product) => product.id).sort();

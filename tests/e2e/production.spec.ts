@@ -9,11 +9,11 @@ test("contacto, enlaces legales y metadata social están disponibles sin rastrea
   await expect(page.locator('meta[property="og:image"]')).toHaveAttribute("content", /opengraph-image/);
   expect(await page.locator('script[src*="googletagmanager"], script[src*="facebook.net"], iframe').count()).toBe(0);
   await page.locator("footer").getByRole("link", { name: "Privacidad", exact: true }).click();
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Información de privacidad");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Política de privacidad");
   await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /noindex/);
   await page.locator("[data-language-switcher] > summary").click();
   await page.getByRole("link", { name: "English", exact: true }).click();
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Privacy information");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Privacy policy");
 });
 
 test("las antiguas rutas administrativas ya no existen", async ({ request }) => {

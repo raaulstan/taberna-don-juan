@@ -26,10 +26,10 @@ test("el selector de seis idiomas admite teclado, Escape y conserva ruta y categ
 });
 
 const translations = [
-  { locale: "fr", title: "Boissons", tagline: "Des saveurs familières. Des instants à savourer.", menu: "La carte", privacy: "Informations sur la confidentialité", dish: "Croquettes de puchero" },
-  { locale: "ro", title: "Băuturi", tagline: "Arome familiare. Momente de savurat.", menu: "Meniul nostru", privacy: "Informații privind confidențialitatea", dish: "Crochete de puchero" },
-  { locale: "it", title: "Bevande", tagline: "I sapori di sempre. Momenti da assaporare.", menu: "Il menù", privacy: "Informazioni sulla privacy", dish: "Crocchette di puchero" },
-  { locale: "de", title: "Getränke", tagline: "Vertraute Aromen. Momente zum Genießen.", menu: "Unsere Speisekarte", privacy: "Informationen zum Datenschutz", dish: "Puchero-Kroketten" },
+  { locale: "fr", title: "Boissons", tagline: "Des saveurs familières. Des instants à savourer.", menu: "La carte", privacy: "Politique de confidentialité", dish: "Croquettes de puchero" },
+  { locale: "ro", title: "Băuturi", tagline: "Arome familiare. Momente de savurat.", menu: "Meniul nostru", privacy: "Politica de confidențialitate", dish: "Crochete de puchero" },
+  { locale: "it", title: "Bevande", tagline: "I sapori di sempre. Momenti da assaporare.", menu: "Il menù", privacy: "Informativa sulla privacy", dish: "Crocchette di puchero" },
+  { locale: "de", title: "Getränke", tagline: "Vertraute Aromen. Momente zum Genießen.", menu: "Unsere Speisekarte", privacy: "Datenschutzerklärung", dish: "Puchero-Kroketten" },
 ] as const;
 
 for (const language of translations) {

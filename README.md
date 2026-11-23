@@ -107,6 +107,7 @@ El selector conserva la ruta y el hash de categoría/producto. El navegador reci
 | Platos, precios, categorías y alérgenos | `src/features/menu/data/official-snapshot.ts` |
 | Bebidas y precios | `src/features/menu/data/drinks-snapshot.ts` |
 | Traducciones de platos | `src/features/menu/data/translations/food-{en,fr,ro,it,de}.json` |
+| Ampliación editorial breve de las descripciones | `src/features/menu/data/description-additions.ts` |
 | Traducciones de bebidas | `src/features/menu/data/product-translations.ts` |
 | Traducciones de categorías | `src/features/menu/data/category-translations.ts` |
 | Textos de la interfaz y del inicio | `messages/{locale}.json` |
@@ -114,8 +115,16 @@ El selector conserva la ruta y el hash de categoría/producto. El navegador reci
 | Fotografías de banner e historia | `homeImages` en `restaurant.ts` |
 | Archivos de fotografías | `public/images/` |
 | Estilos públicos | `src/app/public-design.css` |
+| Datos reales del titular y confirmaciones legales | `src/config/legal.ts` |
+| Textos de privacidad, cookies y aviso legal | `src/features/legal/content.ts` |
 
 Los precios se guardan en **céntimos enteros de EUR**: por ejemplo, `350` representa 3,50 €. Los IDs de producto deben mantenerse estables para conservar los enlaces compartidos. Al añadir un plato o cambiar su identificador, completa su entrada en los cinco diccionarios de traducción; las pruebas comprueban la cobertura.
+
+Las descripciones publicadas combinan la transcripción original con una frase editorial breve en cada idioma, sin añadir ingredientes ni datos de preparación no confirmados. Las tarjetas muestran como máximo dos líneas y las fichas permiten leer el texto completo.
+
+### Completar los datos legales
+
+Los tres documentos incluyen apartados y navegación en los seis idiomas. `legalIdentity` mantiene vacíos los datos que aún no se han facilitado: nombre/razón social, NIF/CIF, domicilio del titular, correo real y registro si corresponde. `legalConfiguration` permite indicar la forma jurídica y confirmar las condiciones de alojamiento y conservación. El bloque de información pendiente se calcula a partir de esos valores; no se sustituyen por datos ficticios. Si el titular es una persona física, el campo registral opcional puede omitirse con `businessType: "individual"`.
 
 Para asociar una imagen a un producto:
 
@@ -185,7 +194,7 @@ Playwright comprueba los seis idiomas, lectura sin JavaScript, productos/precios
 
 No ejecutes builds/runners E2E a la vez: comparten `.next`. Los informes se guardan localmente y están excluidos de Git. La CI se encuentra en `.github/workflows/ci.yml`.
 
-Validación de la versión pública: **28 unitarias y 119 E2E correctas**, con una omisión prevista del swipe desktop. Lint, TypeScript y build correctos.
+Validación de la versión pública: **31 unitarias y 123 E2E correctas**, con una omisión prevista del swipe desktop. Lint, TypeScript y build correctos.
 
 ## Despliegue en Vercel
 

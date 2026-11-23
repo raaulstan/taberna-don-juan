@@ -1,5 +1,6 @@
 import type { Locale } from "@/i18n/config";
 import type { LocalizedText } from "../domain/catalog";
+import { expandFoodDescription } from "./description-additions";
 import en from "./translations/food-en.json";
 import fr from "./translations/food-fr.json";
 import ro from "./translations/food-ro.json";
@@ -11,12 +12,12 @@ export const foodTranslations: Record<(typeof translatedProductLocales)[number],
 
 export function translatedFoodText(id: string, spanishName: string, spanishDescription: string) {
   const name: LocalizedText = { es: spanishName };
-  const description: LocalizedText = { es: spanishDescription };
+  const description: LocalizedText = { es: expandFoodDescription(id, "es", spanishDescription) };
   for (const locale of translatedProductLocales) {
     const row = foodTranslations[locale][id];
     if (!row || row.length !== 2 || !row[0]?.trim() || !row[1]?.trim()) throw new Error(`Falta la traducción ${locale} del producto ${id}.`);
     name[locale] = row[0];
-    description[locale] = row[1];
+    description[locale] = expandFoodDescription(id, locale, row[1]);
   }
   return { name, description };
 }

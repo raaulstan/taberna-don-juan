@@ -1,54 +1,52 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { setRequestLocale } from "next-intl/server";
 import { isLocale, locales } from "@/i18n/config";
 import { site } from "@/config/site";
+import { isLegalDocument, legalConfiguration, legalDocuments, legalIdentity } from "@/config/legal";
+import { legalCopy } from "@/features/legal/content";
+import { getPublicRestaurant } from "@/services/public/content";
+import { readablePhone } from "@/lib/format/phone";
 
-const documents = ["privacidad", "cookies", "aviso-legal"] as const;
-const copy = {
-  es: {
-    "privacidad": { title: "Información de privacidad", paragraphs: ["Documento pendiente de completar y validar por el titular del restaurante. No constituye una política de privacidad definitiva.", "La web muestra información del restaurante y su carta. No dispone de cuentas de usuario, base de datos de visitantes, formulario de contacto ni seguimiento analítico de productos.", "Para redactar la política definitiva faltan la identidad y NIF del responsable, sus datos de contacto para derechos, las finalidades y bases jurídicas, plazos de conservación, encargados contratados y transferencias que correspondan a la configuración real."] },
-    "cookies": { title: "Información sobre cookies", paragraphs: ["La web pública no incorpora actualmente cookies analíticas, publicitarias ni servicios de seguimiento no esenciales. Los enlaces a mapas y redes se abren al solicitarlos; no se cargan mapas o widgets sociales incrustados.", "La selección de idioma se realiza mediante la dirección de la página. La web no crea sesiones de usuario ni utiliza cookies de autenticación.", "Antes de incorporar servicios no esenciales será necesario identificarlos y ofrecer las opciones de consentimiento correspondientes.", "El inventario final de cookies y sus duraciones debe validarse con la configuración real de producción por el titular."] },
-    "aviso-legal": { title: "Aviso legal pendiente de validación", paragraphs: ["La identificación empresarial del titular está pendiente de facilitar. No se han inventado razón social, NIF, inscripción registral ni condiciones legales.", "La denominación comercial utilizada es Taberna Don Juan. La información pública de contacto procede de la web oficial o de los datos publicados por su equipo.", "Antes de publicar este aviso como definitivo deben completarse los datos del titular y revisarse las condiciones de uso y los derechos del material publicado."] },
-  },
-  en: {
-    "privacidad": { title: "Privacy information", paragraphs: ["This document is awaiting completion and validation by the restaurant owner. It is not a final privacy policy.", "The website displays restaurant information and its menu. There are no user accounts, visitor database, contact form or product analytics tracking.", "The final policy requires the controller's legal identity, tax number, rights contact, purposes and legal bases, retention periods, actual processors and any applicable international transfers."] },
-    "cookies": { title: "Cookie information", paragraphs: ["The public website currently uses no analytics, advertising or other non-essential tracking cookies. Map and social links open only when requested; no maps or social widgets are embedded.", "Language selection uses the page address. The website does not create user sessions or use authentication cookies.", "Before adding non-essential services they must be identified and the relevant consent choices provided.", "The owner must validate the final cookie inventory and durations against the actual production configuration."] },
-    "aviso-legal": { title: "Legal notice awaiting validation", paragraphs: ["The owner's legal business details have not yet been supplied. No legal entity name, tax number, registration details or legal terms have been invented.", "The trading name used is Taberna Don Juan. Public contact information comes from the official website or information published by the team.", "Complete the owner's identification and review usage terms and rights to published material before treating this notice as final."] },
-  },
-  fr: {
-    "privacidad": { title: "Informations sur la confidentialité", paragraphs: ["Ce document doit être complété et validé par le propriétaire du restaurant. Il ne constitue pas une politique de confidentialité définitive.", "Le site présente le restaurant et sa carte. Il ne propose ni comptes utilisateurs, ni base de données des visiteurs, ni formulaire de contact, ni suivi analytique des produits.", "La politique définitive nécessite l’identité et le numéro fiscal du responsable, le contact pour l’exercice des droits, les finalités et bases juridiques, les durées de conservation, les sous-traitants et les transferts liés à la configuration réelle."] },
-    "cookies": { title: "Informations sur les cookies", paragraphs: ["Le site public n’utilise actuellement aucun cookie analytique, publicitaire ou de suivi non essentiel. Les liens vers les cartes et réseaux sociaux ne s’ouvrent qu’à votre demande ; aucun widget n’est intégré.", "La langue est sélectionnée par l’adresse de la page. Le site ne crée pas de sessions utilisateur et n’utilise pas de cookies d’authentification.", "Avant d’ajouter des services non essentiels, il faudra les identifier et proposer les choix de consentement correspondants.", "Le propriétaire doit valider l’inventaire final des cookies et leurs durées selon la configuration réelle de production."] },
-    "aviso-legal": { title: "Mentions légales en attente de validation", paragraphs: ["Les informations juridiques de l’exploitant restent à fournir. Aucune raison sociale, identification fiscale, inscription ou condition légale n’a été inventée.", "Le nom commercial est Taberna Don Juan. Les coordonnées publiques proviennent du site d’origine ou des informations publiées par l’équipe.", "L’identité de l’exploitant, les conditions d’utilisation et les droits des contenus doivent être complétés et vérifiés avant de considérer ces mentions comme définitives."] },
-  },
-  ro: {
-    "privacidad": { title: "Informații privind confidențialitatea", paragraphs: ["Acest document urmează să fie completat și validat de proprietarul restaurantului. Nu constituie o politică de confidențialitate definitivă.", "Site-ul prezintă restaurantul și meniul său. Nu există conturi de utilizator, bază de date cu vizitatori, formular de contact sau analiză a produselor.", "Politica definitivă necesită identitatea și codul fiscal al operatorului, datele de contact pentru exercitarea drepturilor, scopurile și temeiurile legale, perioadele de păstrare, persoanele împuternicite și transferurile corespunzătoare configurației reale."] },
-    "cookies": { title: "Informații despre cookie-uri", paragraphs: ["Site-ul public nu folosește în prezent cookie-uri de analiză, publicitate sau urmărire neesențială. Hărțile și rețelele sociale se deschid doar la cerere; nu sunt integrate widgeturi.", "Limba se alege prin adresa paginii. Site-ul nu creează sesiuni de utilizator și nu folosește cookie-uri de autentificare.", "Înaintea adăugării serviciilor neesențiale, acestea trebuie identificate și trebuie oferite opțiunile de consimțământ corespunzătoare.", "Proprietarul trebuie să valideze inventarul final al cookie-urilor și duratele lor în configurația reală de producție."] },
-    "aviso-legal": { title: "Aviz legal în așteptarea validării", paragraphs: ["Datele juridice ale titularului nu au fost încă furnizate. Nu au fost inventate denumiri juridice, coduri fiscale, date de înregistrare sau condiții legale.", "Denumirea comercială este Taberna Don Juan. Datele publice de contact provin de pe site-ul anterior sau din informațiile publicate de echipă.", "Identificarea titularului, condițiile de utilizare și drepturile asupra materialelor trebuie completate și verificate înainte de a considera acest aviz definitiv."] },
-  },
-  it: {
-    "privacidad": { title: "Informazioni sulla privacy", paragraphs: ["Questo documento deve essere completato e convalidato dal titolare del ristorante. Non costituisce un’informativa sulla privacy definitiva.", "Il sito presenta il ristorante e il suo menù. Non sono presenti account utente, database dei visitatori, moduli di contatto o sistemi di analisi dei prodotti.", "L’informativa definitiva richiede identità e codice fiscale del responsabile, contatti per i diritti, finalità e basi giuridiche, tempi di conservazione, responsabili del trattamento e trasferimenti relativi alla configurazione reale."] },
-    "cookies": { title: "Informazioni sui cookie", paragraphs: ["Il sito pubblico non utilizza attualmente cookie analitici, pubblicitari o di tracciamento non essenziali. Mappe e social si aprono solo su richiesta; non sono incorporati widget.", "La lingua viene selezionata tramite l’indirizzo della pagina. Il sito non crea sessioni utente e non utilizza cookie di autenticazione.", "Prima di aggiungere servizi non essenziali occorre identificarli e offrire le relative opzioni di consenso.", "Il titolare deve convalidare l’inventario definitivo dei cookie e la loro durata nella configurazione reale di produzione."] },
-    "aviso-legal": { title: "Note legali in attesa di convalida", paragraphs: ["I dati societari del titolare devono ancora essere forniti. Non sono stati inventati ragione sociale, codice fiscale, iscrizioni o condizioni legali.", "Il nome commerciale utilizzato è Taberna Don Juan. I recapiti pubblici provengono dal sito originale o dalle informazioni pubblicate dallo staff.", "Completare l’identificazione del titolare e verificare condizioni d’uso e diritti sui materiali prima di considerare queste note definitive."] },
-  },
-  de: {
-    "privacidad": { title: "Informationen zum Datenschutz", paragraphs: ["Dieses Dokument muss vom Restaurantinhaber ergänzt und bestätigt werden. Es ist keine endgültige Datenschutzerklärung.", "Die Website zeigt das Restaurant und seine Karte. Es gibt keine Benutzerkonten, Besucherdatenbank, Kontaktformulare oder Produktanalyse-Tracking.", "Für die endgültige Erklärung fehlen die rechtliche Identität und Steuernummer des Verantwortlichen, der Kontakt zur Ausübung von Rechten, Zwecke und Rechtsgrundlagen, Speicherfristen, Auftragsverarbeiter und etwaige Übermittlungen der tatsächlichen Konfiguration."] },
-    "cookies": { title: "Informationen zu Cookies", paragraphs: ["Die öffentliche Website verwendet derzeit keine Analyse-, Werbe- oder sonstigen nicht notwendigen Tracking-Cookies. Karten und soziale Netzwerke werden nur auf Wunsch geöffnet; es sind keine Widgets eingebettet.", "Die Sprache wird über die Seitenadresse gewählt. Die Website erstellt keine Benutzersitzungen und verwendet keine Anmelde-Cookies.", "Vor der Einführung nicht notwendiger Dienste müssen diese benannt und die entsprechenden Einwilligungsmöglichkeiten angeboten werden.", "Der Inhaber muss das endgültige Cookie-Verzeichnis und die Laufzeiten anhand der tatsächlichen Produktionskonfiguration bestätigen."] },
-    "aviso-legal": { title: "Rechtliche Hinweise zur Bestätigung ausstehend", paragraphs: ["Die rechtlichen Unternehmensangaben des Inhabers wurden noch nicht bereitgestellt. Es wurden keine Firmierung, Steuernummer, Registerangaben oder rechtlichen Bedingungen erfunden.", "Der verwendete Handelsname ist Taberna Don Juan. Öffentliche Kontaktdaten stammen von der bisherigen Website oder aus Veröffentlichungen des Teams.", "Vor der endgültigen Veröffentlichung müssen die Angaben zum Inhaber ergänzt und Nutzungsbedingungen sowie Rechte am veröffentlichten Material geprüft werden."] },
-  },
-};
 type Props = { params: Promise<{ locale: string; document: string }> };
-export function generateStaticParams() { return documents.map((document) => ({ document })); }
-function validDocument(value: string): value is (typeof documents)[number] { return documents.some((document) => document === value); }
+export function generateStaticParams() { return legalDocuments.map((document) => ({ document })); }
+
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, document } = await params;
-  if (!isLocale(locale) || !validDocument(document)) notFound();
-  return { title: `${copy[locale][document].title} | Taberna Don Juan`, description: copy[locale][document].paragraphs[0], robots: { index: false, follow: true }, alternates: { canonical: `${site.url}/${locale}/legal/${document}`, languages: Object.fromEntries(locales.map((language) => [language, `${site.url}/${language}/legal/${document}`])) } };
+  if (!isLocale(locale) || !isLegalDocument(document)) notFound();
+  const content = legalCopy[locale].documents[document];
+  return {
+    title: `${content.title} | ${site.name}`, description: content.intro,
+    robots: { index: false, follow: true },
+    alternates: { canonical: `${site.url}/${locale}/legal/${document}`, languages: Object.fromEntries(locales.map((language) => [language, `${site.url}/${language}/legal/${document}`])) },
+  };
 }
+
 export default async function LegalPage({ params }: Props) {
   const { locale, document } = await params;
-  if (!isLocale(locale) || !validDocument(document)) notFound();
+  if (!isLocale(locale) || !isLegalDocument(document)) notFound();
   setRequestLocale(locale);
-  const content = copy[locale][document];
-  return <article className="site-container section-space"><p className="eyebrow text-oak">Taberna Don Juan</p><h1 className="mt-5 max-w-4xl font-serif text-4xl leading-tight sm:text-5xl">{content.title}</h1><div className="mt-8 max-w-3xl space-y-6 leading-relaxed text-oak">{content.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div></article>;
+  const labels = legalCopy[locale];
+  const content = labels.documents[document];
+  const restaurant = await getPublicRestaurant();
+  const fields: (keyof typeof legalIdentity)[] = ["name", "taxId", "registeredAddress", "contactEmail"];
+  if (legalConfiguration.businessType !== "individual" || legalIdentity.registryDetails) fields.push("registryDetails");
+  const pending: string[] = fields.filter((field) => !legalIdentity[field].trim()).map((field) => labels.identityFields[field]);
+  if (legalConfiguration.businessType === "unconfirmed") pending.push(labels.businessTypePending);
+  if (!legalConfiguration.hostingTermsConfirmed) pending.push(labels.hostingPending);
+  if (!legalConfiguration.retentionCriteriaConfirmed) pending.push(labels.retentionPending);
+  const updated = new Intl.DateTimeFormat(locale, { dateStyle: "long", timeZone: "Europe/Madrid" }).format(new Date(`${legalConfiguration.updatedAt}T12:00:00Z`));
+
+  return <article className="legal-document site-container section-space">
+    <header className="max-w-3xl"><p className="eyebrow text-oak">{site.name}</p><h1 className="mt-5 font-serif text-4xl leading-tight sm:text-5xl">{content.title}</h1><p className="mt-5 text-sm leading-relaxed text-oak">{content.intro}</p><p className="mt-4 text-xs text-oak">{labels.updated}: <time dateTime={legalConfiguration.updatedAt}>{updated}</time></p></header>
+    <div className="mt-8 max-w-3xl space-y-9">
+      {pending.length > 0 && <aside aria-labelledby="legal-pending-title" className="legal-pending"><h2 id="legal-pending-title" className="font-semibold">{labels.pendingTitle}</h2><p className="mt-3">{labels.pendingIntro}</p><ul className="mt-3 list-disc space-y-1.5 pl-5">{pending.map((item) => <li key={item}>{item}</li>)}</ul></aside>}
+      <nav aria-label={labels.pageContents} className="legal-index"><p className="font-semibold">{labels.pageContents}</p><ul className="mt-3 flex flex-wrap gap-x-5 gap-y-2"><li><a href="#titular">{labels.identityTitle}</a></li>{content.sections.map((section) => <li key={section.id}><a href={`#${section.id}`}>{section.title}</a></li>)}</ul></nav>
+      <section id="titular" aria-labelledby="legal-identity-title"><h2 id="legal-identity-title" className="font-serif text-2xl sm:text-3xl">{labels.identityTitle}</h2><dl className="legal-identity mt-5">{fields.map((field) => <div key={field}><dt>{labels.identityFields[field]}</dt><dd data-pending={!legalIdentity[field]}>{legalIdentity[field] || labels.pendingValue}</dd></div>)}</dl><div className="mt-5 text-sm leading-relaxed text-oak"><p className="font-semibold">{labels.restaurantContact}: {site.name}</p><address className="mt-2 not-italic">{restaurant.address}</address><a href={restaurant.mobile.href} className="editorial-link mt-1">{readablePhone(restaurant.mobile.display)}</a></div></section>
+      {content.sections.map((section) => <section id={section.id} key={section.id} aria-labelledby={`${section.id}-title`}><h2 id={`${section.id}-title`} className="font-serif text-2xl leading-tight sm:text-3xl">{section.title}</h2><div className="mt-4 space-y-4 leading-relaxed text-oak">{section.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}</div></section>)}
+      <section aria-labelledby="legal-references-title" className="border-t border-border pt-6"><h2 id="legal-references-title" className="font-serif text-2xl">{labels.references}</h2><ul className="mt-3 space-y-2 text-sm"><li><a className="editorial-link" href="https://vercel.com/legal/privacy-policy" target="_blank" rel="noopener noreferrer">Vercel · Privacy Notice</a></li><li><a className="editorial-link" href="https://vercel.com/legal/dpa" target="_blank" rel="noopener noreferrer">Vercel · Data Processing Addendum</a></li><li><a className="editorial-link" href="https://www.aepd.es/" target="_blank" rel="noopener noreferrer">Agencia Española de Protección de Datos</a></li></ul></section>
+      <nav aria-label={labels.otherDocuments} className="border-t border-border pt-6"><p className="font-semibold">{labels.otherDocuments}</p><ul className="mt-3 flex flex-wrap gap-x-6 gap-y-2 text-sm">{legalDocuments.filter((value) => value !== document).map((value) => <li key={value}><Link className="editorial-link" href={`/${locale}/legal/${value}`}>{labels.documents[value].title}</Link></li>)}</ul></nav>
+    </div>
+  </article>;
 }
