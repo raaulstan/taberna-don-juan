@@ -6,7 +6,7 @@ El proyecto es una web pública con catálogos y contenido local. Se retiraron p
 
 ## Renderizado y datos
 
-- Inicio, carta, bebidas y páginas legales en seis idiomas mediante App Router y prerenderizado.
+- Inicio, carta y bebidas en seis idiomas mediante App Router y prerenderizado.
 - 92 platos y 134 bebidas, con validación de integridad y traducciones locales.
 - DTO público con el idioma seleccionado y el original para búsqueda.
 - No se realizan consultas a servicios de datos ni escrituras desde la web.
@@ -14,7 +14,7 @@ El proyecto es una web pública con catálogos y contenido local. Se retiraron p
 
 ## Acceso, cookies y recursos
 
-No hay usuarios, sesiones, contraseñas, operaciones administrativas o cargas públicas de archivos. El manifest público contiene iconos y datos de la web, pero no instala un service worker. Las páginas de privacidad/cookies reflejan este funcionamiento.
+No hay usuarios, sesiones, contraseñas, operaciones administrativas o cargas públicas de archivos. El manifest público contiene iconos y datos de la web, pero no instala un service worker. La sección legal se ha retirado por petición del usuario.
 
 La configuración mantiene HTTPS en el alojamiento, cabeceras generales de navegador y metadata localizada. Las previews usan `noindex`. El origen se configura mediante `NEXT_PUBLIC_SITE_URL`.
 
@@ -28,4 +28,4 @@ Las auditorías Lighthouse se ejecutan contra un build local y distinguen escrit
 
 Los cambios de carta/contacto se realizan en archivos, se prueban y se despliegan de nuevo. El código está en GitHub y la prueba pública en Vercel; se conservan las versiones anteriores en el historial del repositorio.
 
-Los textos legales empresariales definitivos y fotografías propias se incorporan cuando los facilite el restaurante. Las reservas permanecen suspendidas. No se cambia DNS ni se activa ningún servicio adicional de forma automática.
+Las fotografías propias se incorporan cuando las facilite el restaurante. Las reservas permanecen suspendidas. No se cambia DNS ni se activa ningún servicio adicional de forma automática.

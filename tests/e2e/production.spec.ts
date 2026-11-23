@@ -1,19 +1,17 @@
 import { expect, test } from "@playwright/test";
 import sharp from "sharp";
 
-test("contacto, enlaces legales y metadata social están disponibles sin rastreadores", async ({ page }) => {
+test("contacto y metadata social están disponibles sin rastreadores", async ({ page }) => {
   await page.goto("/es");
   await expect(page.getByRole("link", { name: "Obtener indicaciones", exact: true })).toHaveAttribute("href", /https:\/\/www.google.com\/maps\/dir\/\?api=1&destination=/);
   await expect(page.locator("footer address")).toContainText("Sánchez Pastor");
   await expect(page.locator("footer")).toContainText(`© ${new Date().getFullYear()}`);
   await expect(page.locator('meta[property="og:image"]')).toHaveAttribute("content", /opengraph-image/);
   expect(await page.locator('script[src*="googletagmanager"], script[src*="facebook.net"], iframe').count()).toBe(0);
-  await page.locator("footer").getByRole("link", { name: "Privacidad", exact: true }).click();
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Política de privacidad");
-  await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /noindex/);
+  await expect(page.locator('footer a[href*="/legal/"]')).toHaveCount(0);
   await page.locator("[data-language-switcher] > summary").click();
   await page.getByRole("link", { name: "English", exact: true }).click();
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Privacy policy");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("Taberna Don Juan");
 });
 
 test("las antiguas rutas administrativas ya no existen", async ({ request }) => {

@@ -26,10 +26,10 @@ test("el selector de seis idiomas admite teclado, Escape y conserva ruta y categ
 });
 
 const translations = [
-  { locale: "fr", title: "Boissons", tagline: "Des saveurs familières. Des instants à savourer.", menu: "La carte", privacy: "Politique de confidentialité", dish: "Croquettes de puchero" },
-  { locale: "ro", title: "Băuturi", tagline: "Arome familiare. Momente de savurat.", menu: "Meniul nostru", privacy: "Politica de confidențialitate", dish: "Crochete de puchero" },
-  { locale: "it", title: "Bevande", tagline: "I sapori di sempre. Momenti da assaporare.", menu: "Il menù", privacy: "Informativa sulla privacy", dish: "Crocchette di puchero" },
-  { locale: "de", title: "Getränke", tagline: "Vertraute Aromen. Momente zum Genießen.", menu: "Unsere Speisekarte", privacy: "Datenschutzerklärung", dish: "Puchero-Kroketten" },
+  { locale: "fr", title: "Boissons", tagline: "Des saveurs familières. Des instants à savourer.", menu: "La carte", dish: "Croquettes de puchero" },
+  { locale: "ro", title: "Băuturi", tagline: "Arome familiare. Momente de savurat.", menu: "Meniul nostru", dish: "Crochete de puchero" },
+  { locale: "it", title: "Bevande", tagline: "I sapori di sempre. Momenti da assaporare.", menu: "Il menù", dish: "Crocchette di puchero" },
+  { locale: "de", title: "Getränke", tagline: "Vertraute Aromen. Momente zum Genießen.", menu: "Unsere Speisekarte", dish: "Puchero-Kroketten" },
 ] as const;
 
 for (const language of translations) {
@@ -57,8 +57,6 @@ for (const language of translations) {
     expect((await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze()).violations).toEqual([]);
     await page.setViewportSize({ width: 320, height: 900 });
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth)).toBe(true);
-    await page.goto(`/${language.locale}/legal/privacidad`);
-    await expect(page.getByRole("heading", { level: 1 })).toHaveText(language.privacy);
   });
 }
 

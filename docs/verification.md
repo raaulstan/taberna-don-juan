@@ -10,8 +10,8 @@ También se retiraron las dependencias, fixtures y pruebas correspondientes a es
 
 - Lint sin warnings.
 - Tipos de Next y TypeScript correctos, tras regenerar los tipos de rutas que antes incluían el panel.
-- **31 pruebas unitarias correctas**, cinco archivos.
-- Cobertura V8 ejecutada: 84,61 % de sentencias y 84,72 % de líneas en los módulos incluidos.
+- **29 pruebas unitarias correctas**, cuatro archivos.
+- Referencia de cobertura V8 anterior a los últimos cambios de contenido: 84,61 % de sentencias y 84,72 % de líneas en los módulos incluidos.
 - Compilación de producción correcta, ejecutada por el runner E2E.
 - Suite completa de navegador: **123 correctas y una omisión prevista**, con cuatro workers.
 - `/admin`, `/acceso`, las antiguas pantallas de gestión y los recursos de la PWA privada responden 404.
@@ -24,9 +24,15 @@ El runner omite únicamente el swipe en el perfil de escritorio; el gesto se eje
 
 ## Publicación
 
-### Textos legales y descripciones · 23/11/2026
+### Retirada de la información legal
 
-Privacidad, cookies y aviso legal redactados con apartados e índices en seis idiomas, incluyendo alojamiento, datos técnicos, contacto, derechos, conservación, enlaces externos y uso de la web. La identificación del titular y las condiciones contractuales/conservación no verificadas se señalan como pendientes desde `src/config/legal.ts`; no se han creado datos empresariales ni correos ficticios. Se han consultado las políticas oficiales de Vercel, sin afirmar un acuerdo de tratamiento aplicable a un plan no confirmado.
+Por petición del usuario se han eliminado los tres documentos, sus textos y configuración, las traducciones del footer y sus estilos. Las 18 URLs anteriores de los seis idiomas responden 404. El footer se ajusta a tres grupos en escritorio y a marca/contacto sobre navegación/redes en móvil.
+
+Las descripciones ampliadas se conservan. Lint, tipos y build correctos; 29 unitarias y 123 E2E correctas, con una omisión prevista. La publicación de estos cambios se realiza tras autorización expresa del usuario.
+
+### Versión anterior: textos legales y descripciones · 23/11/2026
+
+Antes de su retirada, privacidad, cookies y aviso legal se habían redactado con apartados e índices en seis idiomas, dejando sin inventar los datos reales pendientes del titular y del alojamiento. Esa configuración y esos documentos ya no forman parte de la versión local actual.
 
 Los 92 platos mantienen su descripción de origen y añaden una frase editorial breve en los seis idiomas. Se comprueba un tamaño limitado, con hasta dos líneas en las tarjetas y lectura completa en ficha. Los precios, nombres, alérgenos y las bebidas sin descripción se conservan. Pruebas de documentos, campos pendientes, ausencia de cookies y presentación responsive correctas.
 
@@ -42,4 +48,4 @@ Comprobación remota del 21/11/2026 tras publicar `f83df98`: inicio HTTP 200, si
 
 ## Alcance de la evidencia
 
-Se comprueba Chromium de escritorio y emulación móvil. Axe y teclado no equivalen a una auditoría completa de accesibilidad. Lighthouse local, cuando se ejecuta, no representa Core Web Vitals de campo. Las páginas legales siguen necesitando la información empresarial definitiva; no se han inventado datos del titular.
+Se comprueba Chromium de escritorio y emulación móvil. Axe y teclado no equivalen a una auditoría completa de accesibilidad. Lighthouse local, cuando se ejecuta, no representa Core Web Vitals de campo.

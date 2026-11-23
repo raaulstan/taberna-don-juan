@@ -24,7 +24,7 @@ Los registros se leen del propio proyecto. No existe variable para seleccionar u
 
 ## Renderizado e interacción
 
-Las rutas localizadas se prerenderizan con `generateStaticParams`; sus layouts y composición son Server Components. Las islas cliente se limitan a navegación, selector de idiomas, carrusel, búsqueda/filtros, diálogos y movimiento.
+Las rutas localizadas se prerenderizan con `generateStaticParams`; sus layouts y composición son Server Components. Las islas cliente se limitan a navegación, selector de idiomas, carrusel, búsqueda/filtros, diálogos y movimiento. Las antiguas páginas legales se han retirado y devuelven 404 en los seis idiomas.
 
 `getLocalizedCatalog` mantiene el idioma solicitado y el original español en los textos del DTO. Los otros idiomas permanecen en el servidor. Los IDs, precios y datos publicados no cambian con el idioma; la búsqueda admite el nombre traducido y el original.
 
@@ -39,7 +39,7 @@ Cormorant Garamond y Manrope se sirven desde `public/fonts` con `next/font/local
 ## Rutas y configuración
 
 - `/` redirige a `/es`.
-- Inicio, `/carta`, `/bebidas` y páginas legales están disponibles bajo los seis prefijos de idioma.
+- Inicio, `/carta` y `/bebidas` están disponibles bajo los seis prefijos de idioma.
 - Las antiguas rutas de panel/login y sus recursos privados responden 404.
 - `/reservas` permanece vacía, noindex y fuera del sitemap.
 - `/api/health` devuelve únicamente el estado básico del proceso.
